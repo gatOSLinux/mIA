@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Limpiador final de Wikipedia para MIA - Versión 3 completa
+Limpiador de Wikipedia que puede usar dataset de Hugging Face o archivo local
 """
 
 import bz2
@@ -10,6 +10,8 @@ import os
 import html
 import argparse
 from datetime import datetime
+from datasets import load_dataset
+import requests
 
 def clean_text(text):
     """Limpia el texto de wikitext completamente"""
@@ -131,8 +133,48 @@ def is_valid_article(title, text):
     
     return True
 
-def process_wikipedia(input_file, output_file, max_articles=None):
-    """Procesar Wikipedia completo"""
+def download_from_huggingface(dataset_name, output_file):
+    """Descarga el dataset desde Hugging Face"""
+    print(f"Descargando dataset desde Hugging Face: {dataset_name}")
+    
+    try:
+        # Descargar archivo directamente
+        url = f"https://huggingface.co/datasets/{dataset_name}/resolve/main/eswiki-latest-pages-articles.xml.bz2"
+        
+        print(f"Descargando desde: {url}")
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+        
+        # Guardar archivo
+        with open(output_file, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        
+        print(f"Dataset descargado: {output_file}")
+        return output_file
+        
+    except Exception as e:
+        print(f"Error descargando dataset: {e}")
+        return None
+
+def process_wikipedia_from_hf(dataset_name, output_file, max_articles=None):
+    """Procesa Wikipedia desde Hugging Face dataset"""
+    
+    # Descargar dataset si no existe localmente
+    local_file = "eswiki-latest-pages-articles.xml.bz2"
+    if not os.path.exists(local_file):
+        downloaded = download_from_huggingface(dataset_name, local_file)
+        if not downloaded:
+            print("Error: No se pudo descargar el dataset")
+            return 0
+    else:
+        print(f"Usando archivo local: {local_file}")
+    
+    # Procesar el archivo descargado
+    return process_wikipedia_file(local_file, output_file, max_articles)
+
+def process_wikipedia_file(input_file, output_file, max_articles=None):
+    """Procesa un archivo local de Wikipedia"""
     print(f"Procesando {input_file} → {output_file}")
     
     processed = 0
@@ -218,18 +260,30 @@ def process_wikipedia(input_file, output_file, max_articles=None):
     return valid
 
 def main():
-    parser = argparse.ArgumentParser(description='Limpiar Wikipedia para MIA')
-    parser.add_argument('input_file', help='eswiki-latest-pages-articles.xml.bz2')
-    parser.add_argument('-o', '--output', default='wikipedia_clean.json')
-    parser.add_argument('-m', '--max-articles', type=int)
+    parser = argparse.ArgumentParser(description='Limpiar Wikipedia desde Hugging Face o archivo local')
+    parser.add_argument('--hf-dataset', 
+                       default='masterPokemonGlinux/wikipedia_articles',
+                       help='Dataset de Hugging Face (default: masterPokemonGlinux/wikipedia_articles)')
+    parser.add_argument('--local-file', 
+                       help='Archivo local .xml.bz2 (si se especifica, no usa HF)')
+    parser.add_argument('-o', '--output', 
+                       default='wikipedia_clean.json',
+                       help='Archivo JSON de salida')
+    parser.add_argument('-m', '--max-articles', type=int,
+                       help='Máximo número de artículos válidos')
     
     args = parser.parse_args()
     
-    if not os.path.exists(args.input_file):
-        print(f"Error: {args.input_file} no encontrado")
-        return
-    
-    process_wikipedia(args.input_file, args.output, args.max_articles)
+    # Decidir fuente de datos
+    if args.local_file:
+        if not os.path.exists(args.local_file):
+            print(f"Error: {args.local_file} no encontrado")
+            return
+        print(f"Procesando archivo local: {args.local_file}")
+        process_wikipedia_file(args.local_file, args.output, args.max_articles)
+    else:
+        print(f"Procesando dataset de Hugging Face: {args.hf_dataset}")
+        process_wikipedia_from_hf(args.hf_dataset, args.output, args.max_articles)
 
 if __name__ == "__main__":
     main()
