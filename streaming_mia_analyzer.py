@@ -195,7 +195,7 @@ class StreamingMIAAnalyzer:
             return 'low'
     
     def process_large_corpus(self, input_file, output_file, batch_size=1000):
-        """Procesa corpus grande por batches - maneja JSON con indentación"""
+        """Procesa corpus grande por streaming real - maneja JSON con indentación"""
         print(f"Procesando corpus grande: {input_file}")
         
         analyzed_articles = []
@@ -211,28 +211,70 @@ class StreamingMIAAnalyzer:
         batch = []
         total_processed = 0
         
-        # Leer archivo JSON con indentación
-        with open(input_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-            
-        print("Parseando JSON completo...")
-        try:
-            articles = json.loads(content)
-            print(f"JSON parseado exitosamente: {len(articles)} artículos")
-        except json.JSONDecodeError as e:
-            print(f"Error parseando JSON: {e}")
-            return None
+        # Variables para leer JSON con indentación
+        current_article = []
+        inside_article = False
+        brace_count = 0
         
-        # Procesar artículos por batches
-        for i, article in enumerate(articles):
-            batch.append(article)
-            
-            # Procesar batch cuando alcance el tamaño
-            if len(batch) >= batch_size:
-                self._process_batch(batch, analyzed_articles, stats)
-                total_processed += len(batch)
-                print(f"Procesados: {total_processed:,}, Válidos: {stats['valid_articles']:,}")
-                batch = []
+        print("Procesando JSON con indentación por streaming...")
+        
+        with open(input_file, 'r', encoding='utf-8') as f:
+            for line_num, line in enumerate(f, 1):
+                line = line.strip()
+                
+                # Saltar líneas vacías y el array inicial
+                if not line or line == '[' or line == ']':
+                    continue
+                
+                # Detectar inicio de artículo
+                if line.startswith('{'):
+                    inside_article = True
+                    brace_count = 1
+                    current_article = [line]
+                    continue
+                
+                # Si estamos dentro de un artículo
+                if inside_article:
+                    current_article.append(line)
+                    
+                    # Contar llaves para saber cuándo termina el objeto
+                    brace_count += line.count('{')
+                    brace_count -= line.count('}')
+                    
+                    # Si las llaves se balancean, terminó el artículo
+                    if brace_count == 0:
+                        # Unir todas las líneas del artículo
+                        article_json = ' '.join(current_article)
+                        
+                        # Limpiar coma final si existe
+                        if article_json.endswith(','):
+                            article_json = article_json[:-1]
+                        
+                        try:
+                            # Parsear el artículo individual
+                            article = json.loads(article_json)
+                            batch.append(article)
+                            
+                            # Procesar batch cuando alcance el tamaño
+                            if len(batch) >= batch_size:
+                                self._process_batch(batch, analyzed_articles, stats)
+                                total_processed += len(batch)
+                                print(f"Procesados: {total_processed:,}, Válidos: {stats['valid_articles']:,}")
+                                batch = []
+                                
+                        except json.JSONDecodeError as e:
+                            print(f"Error parseando artículo en línea {line_num}: {e}")
+                        except Exception as e:
+                            print(f"Error procesando artículo en línea {line_num}: {e}")
+                        
+                        # Reset para el siguiente artículo
+                        inside_article = False
+                        current_article = []
+                        brace_count = 0
+                
+                # Mostrar progreso cada 10000 líneas
+                if line_num % 10000 == 0:
+                    print(f"Líneas leídas: {line_num:,}")
         
         # Procesar último batch
         if batch:
