@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Analizador y categorizador de corpus para MIA
-Analiza el JSON limpio y lo categoriza para optimizar el entrenamiento
+Analizador y categorizador de corpus para MIA - Versión con filtros relajados
 """
 
 import json
@@ -42,12 +41,12 @@ class MIACorpusAnalyzer:
             }
         }
         
-        # Filtros de calidad para entrenamiento
+        # Filtros de calidad RELAJADOS para entrenamiento
         self.quality_thresholds = {
-            'min_words': 50,        # Mínimo para ser útil
-            'max_words': 2000,      # Máximo para mantener contexto
-            'min_sentences': 3,     # Estructura mínima
-            'diversity_threshold': 0.4  # Diversidad léxica mínima
+            'min_words': 25,        # Reducido de 50 a 25
+            'max_words': 5000,      # Aumentado de 2000 a 5000
+            'min_sentences': 2,     # Reducido de 3 a 2
+            'diversity_threshold': 0.2  # Reducido de 0.4 a 0.2
         }
     
     def analyze_article(self, article):
@@ -67,7 +66,7 @@ class MIACorpusAnalyzer:
             'lexical_diversity': len(set(words)) / len(words) if words else 0
         }
         
-        # Puntuación de calidad para entrenamiento
+        # Puntuación de calidad RELAJADA para entrenamiento
         quality_score = self._calculate_training_quality(metrics, content)
         
         # Categorización
@@ -87,44 +86,48 @@ class MIACorpusAnalyzer:
         }
     
     def _calculate_training_quality(self, metrics, content):
-        """Calcula calidad específica para entrenamiento de LLM"""
+        """Calcula calidad específica para entrenamiento de LLM - VERSION RELAJADA"""
         score = 0.0
         
-        # Longitud óptima para entrenamiento (peso: 0.3)
+        # Longitud óptima para entrenamiento (peso: 0.3) - MAS PERMISIVO
         word_count = metrics['word_count']
-        if 100 <= word_count <= 500:
+        if 50 <= word_count <= 1000:
             score += 0.3
-        elif 50 <= word_count < 100 or 500 < word_count <= 1000:
-            score += 0.2
-        elif 1000 < word_count <= 2000:
-            score += 0.1
-        
-        # Diversidad léxica (peso: 0.25)
-        if metrics['lexical_diversity'] >= 0.6:
+        elif 25 <= word_count < 50 or 1000 < word_count <= 2000:
             score += 0.25
-        elif metrics['lexical_diversity'] >= 0.4:
-            score += 0.15
-        elif metrics['lexical_diversity'] >= 0.3:
-            score += 0.1
-        
-        # Estructura de oraciones (peso: 0.2)
-        avg_length = metrics['avg_sentence_length']
-        if 10 <= avg_length <= 20:
+        elif 2000 < word_count <= 5000:
             score += 0.2
-        elif 8 <= avg_length < 10 or 20 < avg_length <= 25:
-            score += 0.15
-        elif 5 <= avg_length < 8 or 25 < avg_length <= 30:
+        elif word_count > 5000:
             score += 0.1
         
-        # Contenido conversacional (peso: 0.15)
+        # Diversidad léxica (peso: 0.25) - UMBRALES MAS BAJOS
+        if metrics['lexical_diversity'] >= 0.4:
+            score += 0.25
+        elif metrics['lexical_diversity'] >= 0.3:
+            score += 0.2
+        elif metrics['lexical_diversity'] >= 0.2:
+            score += 0.15
+        elif metrics['lexical_diversity'] >= 0.15:
+            score += 0.1
+        
+        # Estructura de oraciones (peso: 0.2) - MAS FLEXIBLE
+        avg_length = metrics['avg_sentence_length']
+        if 8 <= avg_length <= 25:
+            score += 0.2
+        elif 5 <= avg_length < 8 or 25 < avg_length <= 35:
+            score += 0.15
+        elif avg_length >= 3:
+            score += 0.1
+        
+        # Contenido conversacional (peso: 0.15) - MISMO
         conversational_markers = ['es', 'son', 'puede', 'debe', 'tiene', 'hace', 'dice', 'significa']
-        marker_density = sum(1 for marker in conversational_markers if marker in content.lower()) / word_count
+        marker_density = sum(1 for marker in conversational_markers if marker in content.lower()) / word_count if word_count > 0 else 0
         score += 0.15 * min(marker_density * 100, 1.0)
         
-        # Gramática y puntuación (peso: 0.1)
-        if re.search(r'[.!?]', content) and re.search(r'[,;:]', content):
+        # Gramática y puntuación (peso: 0.1) - MAS PERMISIVO
+        if re.search(r'[.!?]', content):
             score += 0.1
-        elif re.search(r'[.!?]', content):
+        elif len(content) > 50:
             score += 0.05
         
         return min(score, 1.0)
@@ -140,7 +143,7 @@ class MIACorpusAnalyzer:
         for category, info in self.categories.items():
             # Contar coincidencias de keywords
             matches = sum(1 for keyword in info['keywords'] if keyword in word_set)
-            # Normalizar por longitud del contenido
+            # Normalizar por longitud del contenido - AJUSTADO
             score = matches / len(words) * 1000 if words else 0
             category_scores[category] = score
         
@@ -152,11 +155,14 @@ class MIACorpusAnalyzer:
         words = content_lower.split()
         
         potential = {
-            'empathy_training': 0.0,      # Para entrenar respuestas empáticas
-            'knowledge_base': 0.0,        # Para base de conocimiento
-            'dialogue_patterns': 0.0,     # Para patrones de diálogo
-            'emotional_context': 0.0      # Para contexto emocional
+            'empathy_training': 0.0,
+            'knowledge_base': 0.0,
+            'dialogue_patterns': 0.0,
+            'emotional_context': 0.0
         }
+        
+        if len(words) == 0:
+            return potential
         
         # Potencial empático
         empathy_words = ['sentir', 'emoción', 'ayuda', 'apoyo', 'comprende', 'escucha', 'acompaña']
@@ -177,7 +183,7 @@ class MIACorpusAnalyzer:
         return potential
     
     def _determine_training_priority(self, quality_score, category_scores, conversation_potential):
-        """Determina prioridad para entrenamiento"""
+        """Determina prioridad para entrenamiento - UMBRALES RELAJADOS"""
         # Combinar métricas para prioridad
         max_category_score = max(category_scores.values()) if category_scores else 0
         avg_conversation_potential = np.mean(list(conversation_potential.values()))
@@ -186,9 +192,10 @@ class MIACorpusAnalyzer:
                          max_category_score * 0.3 + 
                          avg_conversation_potential * 0.3)
         
-        if priority_score >= 0.7:
+        # UMBRALES MAS BAJOS
+        if priority_score >= 0.4:  # Era 0.7
             return 'high'
-        elif priority_score >= 0.4:
+        elif priority_score >= 0.2:  # Era 0.4
             return 'medium'
         else:
             return 'low'
@@ -213,7 +220,7 @@ class MIACorpusAnalyzer:
         }
         
         for i, article in enumerate(articles):
-            # Aplicar filtros de calidad básicos
+            # Aplicar filtros de calidad básicos RELAJADOS
             if not self._passes_basic_filters(article):
                 continue
             
@@ -228,11 +235,11 @@ class MIACorpusAnalyzer:
             
             analyzed_articles.append(enriched_article)
             
-            # Actualizar estadísticas
+            # Actualizar estadísticas - UMBRALES AJUSTADOS
             quality = analysis['quality_score']
-            if quality >= 0.7:
+            if quality >= 0.5:  # Era 0.7
                 stats['quality_distribution']['high'] += 1
-            elif quality >= 0.4:
+            elif quality >= 0.25:  # Era 0.4
                 stats['quality_distribution']['medium'] += 1
             else:
                 stats['quality_distribution']['low'] += 1
@@ -244,7 +251,10 @@ class MIACorpusAnalyzer:
             if (i + 1) % 1000 == 0:
                 print(f"Analizados: {i + 1:,}")
         
-        stats['avg_quality'] = np.mean([a['analysis']['quality_score'] for a in analyzed_articles])
+        if analyzed_articles:
+            stats['avg_quality'] = np.mean([a['analysis']['quality_score'] for a in analyzed_articles])
+        else:
+            stats['avg_quality'] = 0
         
         # Guardar corpus analizado
         output_data = {
@@ -268,7 +278,7 @@ class MIACorpusAnalyzer:
         return output_data
     
     def _passes_basic_filters(self, article):
-        """Filtros básicos de calidad"""
+        """Filtros básicos de calidad - RELAJADOS"""
         word_count = article.get('word_count', 0)
         content = article.get('content', '')
         
@@ -277,43 +287,53 @@ class MIACorpusAnalyzer:
         if word_count > self.quality_thresholds['max_words']:
             return False
         
-        # Filtrar contenido muy repetitivo
+        # Filtrar contenido muy repetitivo - UMBRAL MAS BAJO
         words = content.split()
-        if len(set(words)) / len(words) < 0.3:
-            return False
+        if len(words) > 0:
+            diversity = len(set(words)) / len(words)
+            if diversity < self.quality_thresholds['diversity_threshold']:
+                return False
         
         return True
     
     def create_training_subsets(self, analyzed_corpus_file, output_dir):
-        """Crea subconjuntos optimizados para entrenamiento"""
+        """Crea subconjuntos optimizados para entrenamiento - UMBRALES RELAJADOS"""
         with open(analyzed_corpus_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
         articles = data['articles']
         os.makedirs(output_dir, exist_ok=True)
         
-        # Subset 1: Alta calidad para pre-entrenamiento
-        high_quality = [a for a in articles if a['analysis']['quality_score'] >= 0.6]
+        # Subset 1: Alta calidad para pre-entrenamiento - UMBRAL RELAJADO
+        high_quality = [a for a in articles if a['analysis']['quality_score'] >= 0.3]  # Era 0.6
         with open(f"{output_dir}/high_quality_pretrain.json", 'w', encoding='utf-8') as f:
             json.dump(high_quality, f, ensure_ascii=False, indent=2)
         
-        # Subset 2: Contenido conversacional para fine-tuning
-        conversational = [a for a in articles if a['analysis']['primary_category'] in ['conversational', 'emotional', 'social']]
+        # Subset 2: Contenido conversacional para fine-tuning - MAS CATEGORIAS
+        conversational = [a for a in articles if a['analysis']['primary_category'] in 
+                         ['conversational', 'emotional', 'social', 'biographical']]  # Agregué biographical
         with open(f"{output_dir}/conversational_finetune.json", 'w', encoding='utf-8') as f:
             json.dump(conversational, f, ensure_ascii=False, indent=2)
         
         # Subset 3: Contenido educativo para base de conocimiento
-        educational = [a for a in articles if a['analysis']['primary_category'] in ['educational', 'cultural', 'biographical']]
+        educational = [a for a in articles if a['analysis']['primary_category'] in 
+                      ['educational', 'cultural', 'biographical']]
         with open(f"{output_dir}/educational_knowledge.json", 'w', encoding='utf-8') as f:
             json.dump(educational, f, ensure_ascii=False, indent=2)
+        
+        # Subset 4: TODO lo que pasó filtros básicos (para tokenizador)
+        all_valid = articles  # Todo lo que llegó hasta aquí ya pasó filtros
+        with open(f"{output_dir}/all_valid_tokenizer.json", 'w', encoding='utf-8') as f:
+            json.dump(all_valid, f, ensure_ascii=False, indent=2)
         
         print(f"Subconjuntos creados en {output_dir}:")
         print(f"  Alta calidad: {len(high_quality):,} artículos")
         print(f"  Conversacional: {len(conversational):,} artículos") 
         print(f"  Educativo: {len(educational):,} artículos")
+        print(f"  Todo válido (tokenizador): {len(all_valid):,} artículos")
 
 def main():
-    parser = argparse.ArgumentParser(description='Analizar y categorizar corpus para MIA')
+    parser = argparse.ArgumentParser(description='Analizar y categorizar corpus para MIA - Filtros relajados')
     parser.add_argument('input_file', help='Archivo JSON limpio de Wikipedia')
     parser.add_argument('-o', '--output', default='corpus_analyzed.json',
                        help='Archivo de salida con análisis')
