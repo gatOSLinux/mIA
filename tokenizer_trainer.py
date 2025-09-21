@@ -278,9 +278,9 @@ def main():
     print("🤖 MIA Tokenizer Trainer - Entrenador de Tokenizador BPE")
     print("=" * 60)
     
-    # Configurar rutas (corregidas para tu sistema)
-    data_path = "/home/Downloads/Dataset-MIA/data_categorizada"  # ← Ruta absoluta corregida
-    output_path = "MIA/models/tokenizer"  # Se creará automáticamente
+    # Configurar rutas
+    data_path = "/home/Downloads/Dataset-MIA/data_categorizada"  # ← Tus datos
+    output_path = "models/tokenizer"  # ← Carpeta local que ya existe
     
     # Verificar que existe la carpeta de datos
     if not Path(data_path).exists():
@@ -295,15 +295,22 @@ def main():
         print("   Por favor, verifica que el archivo corpus_analyzed.json existe.")
         return
     
+    # Verificar que existe la carpeta de modelos local
+    if not Path(output_path).exists():
+        print(f"❌ Error: No se encuentra la carpeta {output_path}")
+        print("   Por favor, verifica que existe la carpeta models/tokenizer/")
+        return
+    
     print(f"✅ Datos encontrados en: {data_path}")
     print(f"✅ Archivo corpus: {corpus_file}")
+    print(f"✅ Guardará en: {Path(output_path).absolute()}")
     
     # Crear entrenador con configuración optimizada para archivos grandes
     trainer = MIATokenizerTrainer(
         data_path=data_path,
         output_path=output_path,
         vocab_size=40000,  # Puedes ajustar entre 32k-50k
-        batch_size=100     # Muy reducido para streaming de 5.8GB
+        batch_size=100     # Optimizado para streaming de 5.8GB
     )
     
     try:
