@@ -267,7 +267,7 @@ def main():
     print("=" * 60)
     
     # Configurar rutas (ajustadas para tu estructura real)
-    data_path = "Downloads/Dataset-MIA/data_categorizada"  # ← Ruta corregida
+    data_path = "/home/Downloads/Dataset-MIA/data_categorizada"  # ← Ruta corregida
     output_path = "MIA/models/tokenizer"  # Se creará automáticamente
     
     # Verificar que existe la carpeta de datos
