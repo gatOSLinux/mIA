@@ -1,0 +1,23 @@
+{
+  "vocab_size": 40000,
+  "special_tokens": [
+    "[PAD]",
+    "[UNK]",
+    "[CLS]",
+    "[SEP]",
+    "[MASK]",
+    "[MIA]",
+    "[USER]",
+    "[EMO]",
+    "[MEM]",
+    "[HAPPY]",
+    "[SAD]",
+    "[EXCITED]",
+    "[CALM]",
+    "[LOVE]",
+    "[CARE]"
+  ],
+  "model_type": "BPE",
+  "trained_on": "Spanish Wikipedia + Cultural Content",
+  "purpose": "MIA Virtual Assistant"
+}
