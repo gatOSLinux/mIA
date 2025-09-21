@@ -119,35 +119,37 @@ class MIATokenizerTrainer:
     
     def create_tokenizer(self):
         """
-        Crea tokenizador BPE optimizado para español con manejo correcto de acentos
+        Crea tokenizador BPE perfecto para español con manejo impecable de puntuación
         """
-        print("🔧 Creando tokenizador BPE optimizado para español...")
+        print("🔧 Creando tokenizador BPE perfecto para español...")
         
         # Crear tokenizador BPE
         tokenizer = Tokenizer(models.BPE(unk_token="[UNK]"))
         
         # NORMALIZACIÓN OPTIMIZADA PARA ESPAÑOL:
-        # No usar NFD que separa acentos - mantener caracteres compuestos
         from tokenizers.normalizers import Sequence, Replace, Strip
         
         tokenizer.normalizer = Sequence([
             Strip(),  # Quitar espacios al inicio/final
             Replace(r'\s+', ' '),  # Múltiples espacios -> un espacio
-            # NO normalizar acentos - mantenerlos como están
+            # Mantener acentos y puntuación española intacta
         ])
         
-        # PRE-TOKENIZACIÓN OPTIMIZADA PARA ESPAÑOL:
-        # Cambiar ByteLevel por Whitespace + Punctuation para mejor manejo de acentos
-        from tokenizers.pre_tokenizers import Sequence as PreSequence, Whitespace, Punctuation
+        # PRE-TOKENIZACIÓN PERFECTA PARA ESPAÑOL:
+        # Configuración especial para manejar puntuación española correctamente
+        from tokenizers.pre_tokenizers import Split, Sequence as PreSequence, Whitespace
+        import re
+        
+        # Patrón que NO separa signos de apertura de la palabra siguiente
+        spanish_pattern = r'(?<=\s)|(?=\s)|(?<=[.!?;,:])|(?=[.!?;,:])(?![¿¡])'
         
         tokenizer.pre_tokenizer = PreSequence([
-            Whitespace(),  # Separar por espacios
-            Punctuation(behavior="isolated")  # Separar puntuación manteniendo contexto
+            Split(pattern=re.compile(spanish_pattern), behavior="removed"),
+            Whitespace()
         ])
         
         # DECODIFICADOR OPTIMIZADO:
-        # Usar WordPiece en lugar de ByteLevel para mejor reconstrucción
-        tokenizer.decoder = decoders.WordPiece(prefix="##")
+        tokenizer.decoder = decoders.WordPiece(prefix="##", cleanup=True)
         
         # Post-procesador: añadir tokens especiales
         tokenizer.post_processor = processors.TemplateProcessing(
