@@ -119,21 +119,35 @@ class MIATokenizerTrainer:
     
     def create_tokenizer(self):
         """
-        Crea y configura el tokenizador BPE
+        Crea tokenizador BPE optimizado para español con manejo correcto de acentos
         """
-        print("🔧 Creando tokenizador BPE...")
+        print("🔧 Creando tokenizador BPE optimizado para español...")
         
         # Crear tokenizador BPE
         tokenizer = Tokenizer(models.BPE(unk_token="[UNK]"))
         
-        # Normalización: mantener acentos para español
-        tokenizer.normalizer = NFD()
+        # NORMALIZACIÓN OPTIMIZADA PARA ESPAÑOL:
+        # No usar NFD que separa acentos - mantener caracteres compuestos
+        from tokenizers.normalizers import Sequence, Replace, Strip
         
-        # Pre-tokenización: dividir por espacios y puntuación
-        tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
+        tokenizer.normalizer = Sequence([
+            Strip(),  # Quitar espacios al inicio/final
+            Replace(r'\s+', ' '),  # Múltiples espacios -> un espacio
+            # NO normalizar acentos - mantenerlos como están
+        ])
         
-        # Decodificador
-        tokenizer.decoder = decoders.ByteLevel()
+        # PRE-TOKENIZACIÓN OPTIMIZADA PARA ESPAÑOL:
+        # Cambiar ByteLevel por Whitespace + Punctuation para mejor manejo de acentos
+        from tokenizers.pre_tokenizers import Sequence as PreSequence, Whitespace, Punctuation
+        
+        tokenizer.pre_tokenizer = PreSequence([
+            Whitespace(),  # Separar por espacios
+            Punctuation(behavior="isolated")  # Separar puntuación manteniendo contexto
+        ])
+        
+        # DECODIFICADOR OPTIMIZADO:
+        # Usar WordPiece en lugar de ByteLevel para mejor reconstrucción
+        tokenizer.decoder = decoders.WordPiece(prefix="##")
         
         # Post-procesador: añadir tokens especiales
         tokenizer.post_processor = processors.TemplateProcessing(
@@ -206,26 +220,41 @@ class MIATokenizerTrainer:
     
     def test_tokenizer(self, tokenizer):
         """
-        Prueba el tokenizador con ejemplos
+        Prueba el tokenizador con ejemplos en español incluyendo acentos
         """
-        print("\n🧪 Probando tokenizador...")
+        print("\n🧪 Probando tokenizador optimizado para español...")
         
         test_texts = [
             "Hola, soy MIA, tu asistente virtual amigable.",
             "¿Cómo te sientes hoy? Estoy aquí para ayudarte.",
             "Me encanta hablar contigo sobre cualquier tema.",
             "¡Qué emocionante poder conversar en español!",
-            "Puedo ayudarte con información, consejos y compañía."
+            "Puedo ayudarte con información, consejos y compañía.",
+            "La niña está en España comiendo paella.",
+            "Acentos: á, é, í, ó, ú, ü y la letra ñ."
         ]
+        
+        all_perfect = True
         
         for text in test_texts:
             encoded = tokenizer.encode(text)
             decoded = tokenizer.decode(encoded.ids)
             
+            # Verificar si la decodificación es perfecta
+            is_perfect = text == decoded
+            status = "✅ PERFECTO" if is_perfect else "❌ ERROR"
+            
+            if not is_perfect:
+                all_perfect = False
+            
             print(f"\n📝 Texto: {text}")
-            print(f"🔢 Tokens: {encoded.tokens[:10]}{'...' if len(encoded.tokens) > 10 else ''}")
+            print(f"🔢 Tokens: {encoded.tokens[:15]}{'...' if len(encoded.tokens) > 15 else ''}")
             print(f"📊 Cantidad: {len(encoded.ids)} tokens")
             print(f"🔄 Decodificado: {decoded}")
+            print(f"🎯 Estado: {status}")
+        
+        print(f"\n{'🎉 ¡TOKENIZADOR PERFECTO!' if all_perfect else '⚠️  NECESITA AJUSTES'}")
+        return all_perfect
     
     def get_vocab_stats(self, tokenizer):
         """
