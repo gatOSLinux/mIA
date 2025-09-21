@@ -119,7 +119,7 @@ class MIATokenizerTrainer:
     
     def create_tokenizer(self):
         """
-        Crea tokenizador BPE perfecto para español con manejo impecable de puntuación
+        Crea tokenizador BPE perfecto para español con manejo correcto de puntuación
         """
         print("🔧 Creando tokenizador BPE perfecto para español...")
         
@@ -132,20 +132,18 @@ class MIATokenizerTrainer:
         tokenizer.normalizer = Sequence([
             Strip(),  # Quitar espacios al inicio/final
             Replace(r'\s+', ' '),  # Múltiples espacios -> un espacio
-            # Mantener acentos y puntuación española intacta
+            # Normalización especial para signos de apertura españoles
+            Replace(r'¿\s+', '¿'),  # Quitar espacios después de ¿
+            Replace(r'¡\s+', '¡'),  # Quitar espacios después de ¡
         ])
         
-        # PRE-TOKENIZACIÓN PERFECTA PARA ESPAÑOL:
-        # Configuración especial para manejar puntuación española correctamente
-        from tokenizers.pre_tokenizers import Split, Sequence as PreSequence, Whitespace
-        import re
-        
-        # Patrón que NO separa signos de apertura de la palabra siguiente
-        spanish_pattern = r'(?<=\s)|(?=\s)|(?<=[.!?;,:])|(?=[.!?;,:])(?![¿¡])'
+        # PRE-TOKENIZACIÓN SIMPLIFICADA PARA ESPAÑOL:
+        # Usar configuración que funciona bien con tokenizers
+        from tokenizers.pre_tokenizers import Sequence as PreSequence, Whitespace, Punctuation
         
         tokenizer.pre_tokenizer = PreSequence([
-            Split(pattern=re.compile(spanish_pattern), behavior="removed"),
-            Whitespace()
+            Whitespace(),  # Separar por espacios primero
+            Punctuation(behavior="contiguous")  # Mantener puntuación contigua junta
         ])
         
         # DECODIFICADOR OPTIMIZADO:
