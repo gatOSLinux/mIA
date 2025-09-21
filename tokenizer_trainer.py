@@ -5,6 +5,7 @@ from pathlib import Path
 from tokenizers import Tokenizer, models, pre_tokenizers, decoders, trainers, processors
 from tokenizers.normalizers import NFD, Lowercase, StripAccents
 import multiprocessing as mp
+import ijson  # Para streaming JSON parsing
 
 class MIATokenizerTrainer:
     def __init__(self, data_path, output_path, vocab_size=40000, batch_size=1000):
@@ -34,8 +35,8 @@ class MIATokenizerTrainer:
         
     def extract_texts_from_json(self):
         """
-        Extrae todos los textos del archivo corpus_analyzed.json procesando por batches
-        para evitar problemas de memoria
+        Extrae todos los textos del archivo corpus_analyzed.json usando streaming
+        para evitar cargar 5.8GB en memoria de una vez
         """
         print("🔍 Buscando archivo corpus_analyzed.json...")
         
@@ -48,88 +49,70 @@ class MIATokenizerTrainer:
         print(f"📁 Encontrado archivo: {corpus_file}")
         print(f"📊 Tamaño del archivo: {corpus_file.stat().st_size / (1024**3):.2f} GB")
         
-        # Generador que yielda textos por batches
+        # Generador que yielda textos usando streaming JSON
         def text_generator():
-            print(f"📖 Procesando: corpus_analyzed.json")
+            print(f"📖 Procesando corpus_analyzed.json con streaming...")
             
             try:
-                # Leer el archivo JSON completo
-                print("   ⏳ Cargando archivo JSON en memoria...")
-                with open(corpus_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                
-                print("   ✅ Archivo JSON cargado exitosamente")
-                
-                # Extraer metadata y artículos
-                metadata = data.get('metadata', {})
-                articles = data.get('articles', [])
-                
-                total_articles = len(articles)
-                total_words = metadata.get('statistics', {}).get('total_words', 0)
-                
-                print(f"   📚 Total de artículos: {total_articles:,}")
-                print(f"   📝 Total de palabras: {total_words:,}")
-                print(f"   🔄 Procesando por batches de {self.batch_size}...")
-                
                 batch_texts = []
                 processed_articles = 0
                 
-                for i, article in enumerate(articles):
-                    # Extraer título y contenido
-                    title = article.get('title', '').strip()
-                    content = article.get('content', '').strip()
+                # Usar ijson para streaming parsing
+                with open(corpus_file, 'rb') as f:
+                    # Parsear los artículos uno por uno sin cargar todo en memoria
+                    articles_parser = ijson.items(f, 'articles.item')
                     
-                    # Combinar título y contenido si ambos existen
-                    if title and content:
-                        text = f"{title}. {content}"
-                    elif content:
-                        text = content
-                    elif title:
-                        text = title
-                    else:
-                        continue
+                    print("   🚀 Iniciando procesamiento streaming...")
                     
-                    # Validar que el texto no esté vacío
-                    if len(text.strip()) > 10:  # Al menos 10 caracteres
-                        batch_texts.append(text)
-                        processed_articles += 1
-                    
-                    # Yield por batches para controlar memoria
-                    if len(batch_texts) >= self.batch_size:
-                        for text in batch_texts:
-                            yield text
-                        batch_texts = []
+                    for i, article in enumerate(articles_parser):
+                        # Extraer título y contenido
+                        title = article.get('title', '').strip() if article.get('title') else ''
+                        content = article.get('content', '').strip() if article.get('content') else ''
                         
-                        # Mostrar progreso cada 1000 artículos
-                        if (i + 1) % 1000 == 0:
-                            progress = ((i + 1) / total_articles) * 100
-                            print(f"   📈 Progreso: {progress:.1f}% ({i + 1:,}/{total_articles:,} artículos)")
+                        # Combinar título y contenido si ambos existen
+                        if title and content:
+                            text = f"{title}. {content}"
+                        elif content:
+                            text = content
+                        elif title:
+                            text = title
+                        else:
+                            continue
                         
-                        # Limpiar memoria periódicamente
-                        if (i + 1) % (self.batch_size * 5) == 0:
-                            gc.collect()
-                
-                # Yield textos restantes del último batch
-                for text in batch_texts:
-                    yield text
-                
-                print(f"   ✅ Procesamiento completado:")
-                print(f"      - Artículos procesados: {processed_articles:,}/{total_articles:,}")
-                print(f"      - Artículos válidos: {(processed_articles/total_articles)*100:.1f}%")
+                        # Validar que el texto no esté vacío y tenga contenido útil
+                        if len(text.strip()) > 20:  # Al menos 20 caracteres
+                            batch_texts.append(text)
+                            processed_articles += 1
+                        
+                        # Yield por batches para controlar memoria
+                        if len(batch_texts) >= self.batch_size:
+                            for text in batch_texts:
+                                yield text
+                            batch_texts = []
+                            
+                            # Mostrar progreso cada 500 artículos
+                            if processed_articles % 500 == 0:
+                                print(f"   📈 Procesados: {processed_articles:,} artículos")
+                            
+                            # Limpiar memoria periódicamente
+                            if processed_articles % 2000 == 0:
+                                gc.collect()
+                    
+                    # Yield textos restantes del último batch
+                    for text in batch_texts:
+                        yield text
+                    
+                    print(f"   ✅ Procesamiento completado:")
+                    print(f"      - Artículos procesados: {processed_articles:,}")
+                    print(f"      - Promedio de caracteres por texto: {sum(len(t) for t in batch_texts) // len(batch_texts) if batch_texts else 0}")
                 
                 # Limpiar memoria final
-                del data, articles
                 gc.collect()
                 
-            except json.JSONDecodeError as e:
-                print(f"❌ Error al decodificar JSON: {e}")
-                raise
-            except MemoryError as e:
-                print(f"❌ Error de memoria al cargar el archivo: {e}")
-                print("   💡 Intenta reducir batch_size o liberar memoria del sistema")
-                raise
             except Exception as e:
-                print(f"❌ Error inesperado procesando corpus_analyzed.json: {e}")
+                print(f"❌ Error durante el streaming parsing: {e}")
+                import traceback
+                traceback.print_exc()
                 raise
         
         return text_generator()
@@ -266,8 +249,8 @@ def main():
     print("🤖 MIA Tokenizer Trainer - Entrenador de Tokenizador BPE")
     print("=" * 60)
     
-    # Configurar rutas (ajustadas para tu estructura real)
-    data_path = "/home/Downloads/Dataset-MIA/data_categorizada"  # ← Ruta corregida
+    # Configurar rutas (corregidas para tu sistema)
+    data_path = "/home/Downloads/Dataset-MIA/data_categorizada"  # ← Ruta absoluta corregida
     output_path = "MIA/models/tokenizer"  # Se creará automáticamente
     
     # Verificar que existe la carpeta de datos
@@ -286,12 +269,12 @@ def main():
     print(f"✅ Datos encontrados en: {data_path}")
     print(f"✅ Archivo corpus: {corpus_file}")
     
-    # Crear entrenador
+    # Crear entrenador con configuración optimizada para archivos grandes
     trainer = MIATokenizerTrainer(
         data_path=data_path,
         output_path=output_path,
         vocab_size=40000,  # Puedes ajustar entre 32k-50k
-        batch_size=200     # Reducido para manejar el archivo de 5.8GB
+        batch_size=100     # Muy reducido para streaming de 5.8GB
     )
     
     try:
