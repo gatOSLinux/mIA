@@ -1,6 +1,6 @@
 import pandas as pd
 from datasets import load_dataset
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 import time
 import json
 from pathlib import Path
@@ -9,12 +9,12 @@ import random
 class EmotionDatasetTranslator:
     def __init__(self, output_dir="models/emotion_classifier/data"):
         """
-        Traductor de dataset de emociones inglés-español para MIA
+        Traductor de dataset de emociones inglés-español para MIA usando deep-translator
         
         Args:
             output_dir: Directorio donde guardar los datos procesados
         """
-        self.translator = Translator()
+        self.translator = GoogleTranslator(source='en', target='es')
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
@@ -66,22 +66,26 @@ class EmotionDatasetTranslator:
             print(f"❌ Error descargando dataset: {e}")
             raise
     
-    def translate_batch(self, texts, max_retries=3, delay=1):
+    def translate_batch(self, texts, max_retries=3, delay=0.5):
         """
-        Traduce un lote de textos con reintentos y delay
+        Traduce un lote de textos con reintentos usando deep-translator
         """
         translated = []
         
         for i, text in enumerate(texts):
+            # Mostrar progreso cada 10 elementos
+            if i > 0 and i % 10 == 0:
+                print(f"    Traduciendo: {i}/{len(texts)}")
+            
             for attempt in range(max_retries):
                 try:
-                    # Agregar delay para evitar rate limiting
+                    # Delay entre traducciones para evitar rate limiting
                     if i > 0:
                         time.sleep(delay)
                     
-                    # Traducir texto
-                    result = self.translator.translate(text, src='en', dest='es')
-                    translated.append(result.text)
+                    # Traducir texto (deep-translator es síncrono)
+                    translated_text = self.translator.translate(text)
+                    translated.append(translated_text)
                     break
                     
                 except Exception as e:
@@ -89,7 +93,7 @@ class EmotionDatasetTranslator:
                         print(f"⚠️  Error traduciendo: '{text[:50]}...' - Usando original")
                         translated.append(text)  # Usar original si falla
                     else:
-                        time.sleep(delay * 2)  # Esperar más tiempo en reintento
+                        time.sleep(delay * (attempt + 1))  # Incrementar delay en reintentos
         
         return translated
     
@@ -224,10 +228,10 @@ class EmotionDatasetTranslator:
 
 def main():
     """
-    Función principal para traducir el dataset
+    Función principal para traducir el dataset usando deep-translator
     """
-    print("🤖 MIA Emotion Dataset Translator")
-    print("=" * 50)
+    print("🤖 MIA Emotion Dataset Translator (con deep-translator)")
+    print("=" * 60)
     
     # Crear traductor
     translator = EmotionDatasetTranslator()
@@ -236,12 +240,11 @@ def main():
         # Paso 1: Descargar dataset
         dataset = translator.download_dataset()
         
-        # Paso 2: Traducir (usar sample_size=1000 para prueba rápida)
-        # Para dataset completo, comentar sample_size
+        # Paso 2: Traducir con configuración optimizada
         translated_data = translator.translate_dataset(
             dataset, 
-            batch_size=20,  # Lotes pequeños para evitar rate limiting
-            sample_size=2000  # Usar 2000 ejemplos para comenzar
+            batch_size=50,  # Lotes más grandes con deep-translator
+            sample_size=3000  # Muestra de 3000 ejemplos para empezar
         )
         
         # Paso 3: Limpiar traducciones
@@ -256,6 +259,7 @@ def main():
         print("\n🎉 ¡Dataset de emociones listo para entrenar!")
         print(f"📁 Ubicación: {output_path}")
         print("\n📋 Próximo paso: Entrenar el clasificador de emociones")
+        print("\n💡 Para usar dataset completo, cambia sample_size=None")
         
     except Exception as e:
         print(f"❌ Error en el proceso: {e}")
