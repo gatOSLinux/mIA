@@ -46,7 +46,7 @@ class EmotionDatasetTranslator:
         
         try:
             # Cargar dataset con split balanceado
-            dataset = load_dataset("dair-ai/emotion/split/", split)
+            dataset = load_dataset("dair-ai/emotion","split", split=split)
             
             print(f"✅ Dataset descargado: {len(dataset)} ejemplos")
             print(f"📊 Distribución por emoción:")
