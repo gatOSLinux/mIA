@@ -38,7 +38,7 @@ class EmotionDatasetTranslator:
             5: "surprise"
         }
         
-    def download_dataset(self):
+    def download_dataset(self,split="train"):
         """
         Descarga el dataset de emociones de HuggingFace
         """
@@ -46,7 +46,7 @@ class EmotionDatasetTranslator:
         
         try:
             # Cargar dataset con split balanceado
-            dataset = load_dataset("dair-ai/emotion", split="train")
+            dataset = load_dataset("dair-ai/emotion", split)
             
             print(f"✅ Dataset descargado: {len(dataset)} ejemplos")
             print(f"📊 Distribución por emoción:")
@@ -236,35 +236,37 @@ def main():
     # Crear traductor
     translator = EmotionDatasetTranslator()
     
-    try:
-        # Paso 1: Descargar dataset
-        dataset = translator.download_dataset()
-        
-        # Paso 2: Traducir con configuración optimizada
-        translated_data = translator.translate_dataset(
-            dataset, 
-            batch_size=50,  # Lotes más grandes con deep-translator
-            sample_size=3000  # Muestra de 3000 ejemplos para empezar
-        )
-        
-        # Paso 3: Limpiar traducciones
-        cleaned_data = translator.clean_translations(translated_data)
-        
-        # Paso 4: Guardar dataset
-        output_path = translator.save_dataset(cleaned_data)
-        
-        # Paso 5: Mostrar ejemplos
-        translator.show_samples(cleaned_data)
-        
-        print("\n🎉 ¡Dataset de emociones listo para entrenar!")
-        print(f"📁 Ubicación: {output_path}")
-        print("\n📋 Próximo paso: Entrenar el clasificador de emociones")
-        print("\n💡 Para usar dataset completo, cambia sample_size=None")
-        
-    except Exception as e:
-        print(f"❌ Error en el proceso: {e}")
-        import traceback
-        traceback.print_exc()
+    for split in ["train", "validation", "test"]:
+        try:
+            # Paso 1: Descargar dataset
+            dataset = translator.download_dataset(split)
+            
+            # Paso 2: Traducir con configuración optimizada
+            translated_data = translator.translate_dataset(
+                dataset, 
+                batch_size=50,  # Lotes más grandes con deep-translator
+                sample_size=3000  # Muestra de 3000 ejemplos para empezar
+            )
+            
+            # Paso 3: Limpiar traducciones
+            cleaned_data = translator.clean_translations(translated_data)
+            
+            # Paso 4: Guardar dataset
+            filename= f"emotion_dataset_{split}_es.json"
+            output_path = translator.save_dataset(cleaned_data,filename)
+            
+            # Paso 5: Mostrar ejemplos
+            translator.show_samples(cleaned_data)
+            
+            print("\n🎉 ¡Dataset de emociones listo para entrenar!")
+            print(f"📁 Ubicación: {output_path}")
+            print("\n📋 Próximo paso: Entrenar el clasificador de emociones")
+            print("\n💡 Para usar dataset completo, cambia sample_size=None")
+            
+        except Exception as e:
+            print(f"❌ Error en el proceso: {e}")
+            import traceback
+            traceback.print_exc()
 
 if __name__ == "__main__":
     main()
