@@ -236,7 +236,7 @@ def main():
     # Crear traductor
     translator = EmotionDatasetTranslator()
     
-    for split in ["test"]:
+    for split in ["train"]:
         try:
             # Paso 1: Descargar dataset
             dataset = translator.download_dataset(split)
@@ -245,7 +245,7 @@ def main():
             translated_data = translator.translate_dataset(
                 dataset, 
                 batch_size=50,  # Lotes más grandes con deep-translator
-                sample_size=3000  # Muestra de 3000 ejemplos para empezar
+                sample_size=16000  # Muestra de 3000 ejemplos para empezar
             )
             
             # Paso 3: Limpiar traducciones
