@@ -236,7 +236,7 @@ def main():
     # Crear traductor
     translator = EmotionDatasetTranslator()
     
-    for split in ["train", "validation", "test"]:
+    for split in ["test"]:
         try:
             # Paso 1: Descargar dataset
             dataset = translator.download_dataset(split)
