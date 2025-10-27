@@ -377,9 +377,9 @@ class EmotionTrainer:
 def main():
     # Configuración
     DATA_DIR = "models/emotion_classifier/data"
-    TRAIN_PATH = f"{DATA_DIR}/emotion_train_dataset_es.json"
-    VAL_PATH = f"{DATA_DIR}/emotion_validation_dataset_es.json"
-    TEST_PATH = f"{DATA_DIR}/emotion_test_dataset_es.json"
+    TRAIN_PATH = f"{DATA_DIR}/emotion_dataset_train_es.json"
+    VAL_PATH = f"{DATA_DIR}/emotion_dataset_validation_es.json"
+    TEST_PATH = f"{DATA_DIR}/emotion_dataset_test_es.json"
     SAVE_PATH = "models/emotion_classifier"
     
     # Hiperparámetros
