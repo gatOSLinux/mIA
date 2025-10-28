@@ -1,0 +1,54 @@
+============================================================
+REPORTE DE CLASIFICACIÓN - TEST SET
+============================================================
+
+
+TRISTEZA:
+  Precision: 0.7778
+  Recall:    0.8193
+  F1-Score:  0.7980
+  Support:   581.0
+
+ALEGRÍA:
+  Precision: 0.7979
+  Recall:    0.8863
+  F1-Score:  0.8398
+  Support:   695.0
+
+AMOR:
+  Precision: 0.4538
+  Recall:    0.3711
+  F1-Score:  0.4083
+  Support:   159.0
+
+IRA:
+  Precision: 0.6720
+  Recall:    0.6109
+  F1-Score:  0.6400
+  Support:   275.0
+
+MIEDO:
+  Precision: 0.5636
+  Recall:    0.5938
+  F1-Score:  0.5783
+  Support:   224.0
+
+SORPRESA:
+  Precision: 0.0000
+  Recall:    0.0000
+  F1-Score:  0.0000
+  Support:   66.0
+
+============================================================
+MACRO AVG:
+  Precision: 0.5442
+  Recall:    0.5469
+  F1-Score:  0.5441
+
+WEIGHTED AVG:
+  Precision: 0.6948
+  Recall:    0.7260
+  F1-Score:  0.7089
+
+ACCURACY: 0.7260
+============================================================

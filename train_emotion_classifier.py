@@ -31,8 +31,8 @@ class EmotionDataset(Dataset):
         with open(data_path, 'r', encoding='utf-8') as f:
             self.data = json.load(f)
         
-        self.texts = [item['text'] for item in self.data]
-        self.labels = [item['label'] for item in self.data]
+        self.texts = [item['text'] for item in self.data['data']]
+        self.labels = [item['label'] for item in self.data['data']]
     
     def __len__(self):
         return len(self.texts)
