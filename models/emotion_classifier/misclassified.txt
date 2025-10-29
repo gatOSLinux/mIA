@@ -1,0 +1,261 @@
+[gold=tristeza | pred=amor] Tengo la esperanza de que el sentimiento que tengo sea en realidad emoción, un amigo añorado hace mucho tiempo.
+[gold=alegría | pred=amor] Siento que algunos de ustedes tienen dolores y no se imaginan apasionarse por el grupo o la idea que les está causando dolor.
+[gold=miedo | pred=sorpresa] Siento que especialmente en el último año he pasado de niña a mujer y, a pesar de lo indecisa que siempre he estado acerca de envejecer, el próximo año cumpliré veinticuatro. Me sorprende lo feliz que estoy de haberlo hecho.
+[gold=ira | pred=miedo] cuando un amigo me dejó caer una rana en el cuello
+[gold=tristeza | pred=miedo] No he realizado una encuesta, pero es muy probable que muchos de ellos se sientan tan asaltados por sus demonios y otros creadores como me habría sentido yo si las paredes hubieran estado cubiertas sólo con figuras eminentes, héroes patrióticos y hazañas épicas.
+[gold=miedo | pred=ira] Me siento agitado y molesto más que preocupado o temeroso, pero estos sentimientos pueden llevar fácilmente a tener mal genio con mi familia y sentimientos de falta de armonía.
+[gold=ira | pred=miedo] En una fiesta conocí a una chica que me atrajo hacia ella.
+[gold=ira | pred=amor] Siento que me preocupo demasiado y mucho por cosas insignificantes como
+[gold=alegría | pred=sorpresa] Empecé a caminar de nuevo ayer y se siente increíble
+[gold=tristeza | pred=alegría] Me siento maravillosamente emocionado al saber que estas mujeres de las que conocía sólo a un puñado nos estaban sosteniendo a mí y a mi baba en nuestro viaje.
+[gold=tristeza | pred=amor] Sentía nostalgia por el desayuno y el servicio anual de Pascua en la iglesia esta mañana cuando salimos para caminar hasta el precipicio para ver el amanecer.
+[gold=sorpresa | pred=tristeza] No me siento traicionado porque el traidor no tenía motivos para su acusación, pero simplemente me sorprende la capacidad de algunas personas para hacer tales cosas.
+[gold=miedo | pred=sorpresa] Ya siento que nos está usando, se siente raro porque aún no he hecho nada allí, pero siento que viene como si el ministerio viniera hacia mí.
+[gold=ira | pred=alegría] Algunas personas dijeron que el líder de la clase solo elige a sus amigos. No es cierto.
+[gold=sorpresa | pred=tristeza] Me sentía muy incómoda y sentía sensaciones raras, pero no estaba segura de si eran contracciones, ya que nunca sentí contracciones con Jared hasta que me inyectaron pitocina.
+[gold=miedo | pred=alegría] Me siento un poco ansioso por todo el asunto.
+[gold=alegría | pred=amor] Me siento generoso esta semana.
+[gold=alegría | pred=amor] Me siento muy bendecida de poder compartirlo con todos ustedes.
+[gold=tristeza | pred=ira] No quise enojarme contigo bommie. Simplemente no puedo controlar mis sentimientos. Simplemente me odiaba a mí mismo. ¿Por qué soy así? La Dara que no puede superar esa b.
+[gold=alegría | pred=amor] Siento que simplemente he aceptado lo que se ha hecho y que no importa el tiempo que pase, siempre estará conmigo.
+[gold=alegría | pred=amor] Me apasiona mucho la edad que deben tener los niños para someterse a tratamientos de belleza.
+[gold=tristeza | pred=alegría] Solo proporciono el enlace como cortesía para su autor, pero se trataba de cosas que fueron anteriores a mi tiempo o que nunca experimenté, incluso si viví cuando estaban disponibles, por lo que no podía sentirme emocionado por nada de eso.
+[gold=alegría | pred=amor] He llegado a sentir acerca de un personaje secundario en una de mis películas favoritas de todos los tiempos.
+[gold=alegría | pred=amor] Tengo sentimientos nostálgicos, he conocido gente maravillosa en línea e Internet en línea es para mí como mi segunda vida.
+[gold=alegría | pred=tristeza] Odio sentirme así, esto es una mierda, está bien, ya terminé, adiós.
+[gold=alegría | pred=amor] me siento más fiel que nunca
+[gold=miedo | pred=tristeza] Agarré a mi perro y la abracé ferozmente durante la siguiente hora más o menos hasta que comencé a sentirme un poco como yo mismo otra vez, pero no me he deshecho por completo de ese sentimiento y me he sentido bastante deprimido y ansioso todo el día.
+[gold=ira | pred=tristeza] Me siento un poco estresado a pesar de que todas las cosas que estoy pasando son divertidas.
+[gold=alegría | pred=amor] Realmente siento y sé que el diablo odia que siempre haya sido algo que podría usar contra mí y estoy decidido a no dejarlo.
+[gold=miedo | pred=sorpresa] Me siento muy raro cuando tengo que conocer gente a la que le envío mensajes de texto pero no hablo cara a cara.
+[gold=alegría | pred=amor] Me gusta la sensación fresca y dulce que me dio.
+[gold=tristeza | pred=sorpresa] Me he sentido aturdido todo el día.
+[gold=ira | pred=miedo] He sentido la necesidad de escribir mis sentimientos a veces ansiosos, pensamientos impacientes, listas de cosas que aún deberían hacerse antes de que llegue este bebé.
+[gold=miedo | pred=sorpresa] Podría haberlo esperado en todos los sentidos y en ese momento me sentí un poco abrumado por lo rápido que cambió la vida en las últimas semanas.
+[gold=alegría | pred=tristeza] También intenté, después de toda esa frustración cuando me sentía sin demasiada energía para tener más problemas, trabajar en la respirometría, lo cual será una gran pesadilla.
+[gold=alegría | pred=amor] Creo que las personas deben elegir las causas que les apasionan y hacer lo que puedan y no tengo ningún derecho ni deseo de promover que mis propias organizaciones benéficas sean más valiosas que otras.
+[gold=ira | pred=amor] Siento que las personas que amo quieren y necesitan no hablarme ni conectarse más conmigo porque tienen problemas emocionales y de salud mental jodidos que no puedo ayudar a contribuir, contener, comprender o abarcar.
+[gold=alegría | pred=amor] No estoy orgulloso de ser británico, no me alegro de ser joven y ciertamente no me siento bendecido por las oportunidades.
+[gold=miedo | pred=sorpresa] Sé que eso se siente raro, ¿verdad?
+[gold=alegría | pred=amor] No estoy seguro de cómo me siento, creo que porque sentí que ya lo sabía, ya lo he aceptado.
+[gold=tristeza | pred=ira] Odio estos sentimientos en mi corazón Odio que el trabajo me estrese Odio que Cornelius no me deje salirme con la mía Estoy frustrado Señor
+[gold=alegría | pred=amor] siento esa pasión por
+[gold=ira | pred=tristeza] De hecho, estuve en una reunión la semana pasada donde alguien le gritó a una señora mayor porque sonó su teléfono. Me sentí muy mal por ella. Tu jefe te trata injustamente o en este caso alguien te hace sentir que no vales nada. Solo permite que los que ofendieron te roben la al
+[gold=alegría | pred=amor] No sé ustedes pero a mí me hace sentir generoso.
+[gold=alegría | pred=amor] Sentí que tenía un ligero amargor en el final que le restaba sabor a su sensación en boca aceitosa y su entrada dulce.
+[gold=ira | pred=alegría] Normalmente ignoro las invitaciones a páginas que son irrelevantes para mí o las invitaciones a juegos de Facebook porque son impersonales y no parecen sinceros.
+[gold=miedo | pred=sorpresa] Empecé a sentirme tan abrumado
+[gold=alegría | pred=miedo] De repente me siento nervioso y nervioso.
+[gold=alegría | pred=amor] Estoy creando más íconos de humor ahora mismo para que veas cómo me siento y pienso y, por supuesto, todo es encantador.
+[gold=tristeza | pred=alegría] Siento que tengo que estar de acuerdo con ella, aunque puedo imaginar algunos posibles casos bastante desagradables.
+[gold=miedo | pred=tristeza] Me da vergüenza admitir que estaba luchando por cargar una sola computadora
+[gold=ira | pred=tristeza] Realmente no me gusta Quinn porque siento que terminará lastimando a Barney y odié la aburrida historia de Ted Robin.
+[gold=ira | pred=tristeza] Me di cuenta de que me sentía muy estresado y ansioso y no sabía exactamente por qué.
+[gold=ira | pred=tristeza] Nunca puedo decirle cómo me siento y realmente apesta porque creo que eso le molesta mucho.
+[gold=tristeza | pred=alegría] Me siento tan emocionado hoy
+[gold=alegría | pred=sorpresa] Dejé mi Garmin en mi bicicleta, así que iba a tener que hacer esto sintiendo que al salir de la transición es increíble escuchar aplausos y tu adrenalina se está volviendo loca.
+[gold=ira | pred=alegría] cada vez que me pongo en el lugar de los demás y trato de hacer feliz a la persona
+[gold=miedo | pred=tristeza] Comencé a sentirme incómodo con mis amigos heterosexuales, especialmente después de que uno de ellos, borracho, se me acercó y me agarró de la cintura mientras intentaba murmurar cosas dulces en mi oído en una fiesta esa misma semana.
+[gold=alegría | pred=amor] Siento que no soy aceptado aquí y me opongo a esta fuerza que viene de todos lados y que me dice que algo anda mal conmigo si no estoy casado y tengo hijos.
+[gold=miedo | pred=alegría] Sin embargo, disfruté el libro y me gustaron especialmente los personajes de los hermanos, uno entusiasmado con el espíritu de detección y el otro escéptico pero dispuesto a respaldar a su hermano en una pelea.
+[gold=miedo | pred=tristeza] Me siento particularmente incómodo con lo mucho que un conductor mira el teléfono. Grito, mirando el premio.
+[gold=tristeza | pred=alegría] Dudo que eso tenga sentido para nadie más que para mí. Cuando me siento emocionado, las metáforas surgen como un deslizamiento de rocas.
+[gold=miedo | pred=alegría] He tomado clases de yoga durante años, pero durante los últimos días me sentí muy ansiosa por
+[gold=tristeza | pred=miedo] Me siento impotente para recuperar un sentimiento de seguridad.
+[gold=tristeza | pred=ira] Admito que me siento un poco despreciado en este momento.
+[gold=ira | pred=tristeza] cuando supe que mi mejor amigo había reprobado los exámenes
+[gold=miedo | pred=sorpresa] Me sentí un poco raro con ese disfraz.
+[gold=miedo | pred=sorpresa] Me siento raro hablando de cosas menos serias ahora como cocinar.
+[gold=alegría | pred=tristeza] Estoy feliz, me siento sin energía y no muy inspirada para hacer mis manualidades.
+[gold=tristeza | pred=ira] Siento que sería una tontería y quizás un poco irrespetuoso considerar hacer la carrera larga y montañosa.
+[gold=miedo | pred=sorpresa] Miré a Mabel esta mañana, llamé a mi seno izquierdo Mabel, el derecho es Hazel y siento esta extraña mezcla de ira y pérdida. Valerie escribió menos de un mes después de su diagnóstico.
+[gold=tristeza | pred=miedo] Puedo notar que mis brazos y manos se sienten más débiles y se sienten más entumecidos y con hormigueo por la noche cuando me despierto.
+[gold=tristeza | pred=miedo] Sentí cosas, a menudo era solo miedo, ansiedad y desconfianza reprimidos.
+[gold=miedo | pred=sorpresa] Pienso y se siente un poco raro.
+[gold=ira | pred=tristeza] Espero que sea porque entiende lo que siento. Espero que vea lo que podría perderse y esté dejando de lado los pequeños pensamientos negativos.
+[gold=alegría | pred=amor] Siento que ya sé quiénes son la mayoría de ellos y estoy empezando a desarrollar lo que me gusta y lo que no me gusta, aunque no me han gustado los desalojos rápidos, me han parecido bastante inútiles. El primero en irse regresó y los dos compañeros web no tuvieron ningún impacto
+[gold=ira | pred=tristeza] Me siento estresado y un poco ansioso.
+[gold=ira | pred=amor] Puedo andar en bicicleta más lejos que nunca y la sensación de terminar los kilómetros de Manchester a Blackpool y luego no preocuparme en absoluto por tener que recorrer un kilómetro extra para lograrlo.
+[gold=tristeza | pred=alegría] todavía me siento muy emocionado
+[gold=tristeza | pred=miedo] Me siento bastante impotente en todo esto, así que la oración es la herramienta más efectiva que tengo porque no tengo respuestas y no hay nada más que pueda ofrecerles en este momento.
+[gold=amor | pred=alegría] Entiendo que están reaccionando a lo que estamos haciendo. Creo que nos están observando de cerca y me siento más feliz. Realmente puedo sentir que nos están apoyando.
+[gold=miedo | pred=sorpresa] Me sentí raro el otro día y desapareció unos minutos después de tomar metformina.
+[gold=ira | pred=alegría] Empecé a sentir que me estaba volviendo loco porque estaba seguro de que podía ver estrellas flotando en el agua, pero cada vez que iba a agarrar una no encontraba nada.
+[gold=ira | pred=amor] No estoy de acuerdo con mis padres en muchos temas y a veces les hago saber mis sentimientos de manera poco amable.
+[gold=ira | pred=alegría] Tengo un sentimiento de poder para justificar su pereza y su maldad con las chicas flacas.
+[gold=tristeza | pred=alegría] Siento que ignoraron la naturaleza sistémica de un patrón de abuso sexual y el mal manejo de las denuncias de abuso sexual al servicio del comprensible deseo de defender y proteger a un amigo y su reputación.
+[gold=ira | pred=tristeza] Comencé a sentirme un poco estresado por salir a tiempo y asegurarme de que tuviéramos las fotos de preparación que quería, pero todo parecía funcionar perfectamente.
+[gold=alegría | pred=amor] Siento que el alcoholismo es algo ampliamente aceptado como norma en la cultura gay.
+[gold=alegría | pred=amor] Creo que sentirse aceptado sin juzgar puede ser curativo.
+[gold=miedo | pred=alegría] No estoy seguro de los méritos de publicar en este blog con la frecuencia o seriedad con la que lo había hecho durante el año anterior.
+[gold=amor | pred=alegría] Lo que siento al dejar el trabajo es caluroso, complicado y templado con la inquietud de un futuro que se siente fuera de mis manos.
+[gold=miedo | pred=sorpresa] Siempre tendría esta canción atrapada en mi cabeza después de un bombardeo o un incidente y luego me sentiría un poco raro porque si no prestas atención a la letra, suena como una canción muy feliz, no del tipo que se supone que debes tararear en los días difíciles.
+[gold=alegría | pred=amor] Siento que la tercera situación resume bastante bien mis sentimientos hacia este título.
+[gold=miedo | pred=sorpresa] Me siento muy raro pero supongo que algo feliz.
+[gold=ira | pred=miedo] No estoy seguro si soy solo yo quien se siente así o si todos, excepto las almas torturadas, no son los mejores novios.
+[gold=miedo | pred=ira] Noto lo diferente que es esta pregunta de por qué me siento tan agitado.
+[gold=tristeza | pred=alegría] Pasé anoche en el sofá sintiéndome como si estuviera sufriendo de hipotermia mientras la casa permanecía en una temperatura cálida.
+[gold=ira | pred=tristeza] Realmente lo siento por las mujeres que tienen que trabajar con estos desagradables cretinos.
+[gold=miedo | pred=sorpresa] Me siento un poco raro cuando Andrea intenta hablarme sobre Chris.
+[gold=alegría | pred=amor] Siento que lo aprecio, cuido al bebé, trato de mantener el apartamento limpio tanto como sea posible y trato de no llamarlo un millón de veces para saber cuándo estará en casa, varía de un día a otro ya que él trabaja por cuenta propia, por lo que es difícil planificar las cosas 
+[gold=alegría | pred=amor] Sé que ella es la única que proporciona ingresos a mi familia en este momento, pero parece que nos está poniendo en cara que nos está apoyando.
+[gold=tristeza | pred=ira] Estoy exhausto y me siento un poco malhumorado, pero ahora estoy furioso por encima de todo lo demás.
+[gold=alegría | pred=amor] Me sentí como si fuera una celebridad y un artilugio se paró y se dejó admirar mientras bebía calabaza de mi taza.
+[gold=tristeza | pred=miedo] este lunes tomé un examen de matemáticas y lo reprobé por segunda vez
+[gold=alegría | pred=tristeza] No sé qué sentir, no estoy seguro de si debería sentirme triste porque esto está terminando o debería sentirme feliz de que haya terminado y pueda seguir adelante.
+[gold=ira | pred=tristeza] Todavía me siento excluido. Me siento como el niño más odiado del grupo asiático.
+[gold=tristeza | pred=miedo] Siempre me siento impotente en tiempos de desastre, pero me siento un poco mejor sabiendo que incluso unos pocos dólares pueden marcar la diferencia para alguien que lo necesita.
+[gold=alegría | pred=amor] Siento que puedo haber engañado a los amables lectores de este blog.
+[gold=tristeza | pred=ira] Siento que los cazadores furtivos y otras personas que matan animales por sus pieles, marfil u otras partes, deberían ser castigados severamente. Considero cruel la caza y la pesca.
+[gold=miedo | pred=tristeza] No puedo entrar a una tienda en ningún lugar donde no me sienta incómodo.
+[gold=alegría | pred=amor] Solo le digo a la gente que ahora mismo me siento como un dulce desastre sureño.
+[gold=alegría | pred=amor] No me siento tan generoso y lo envían al sofá donde me mira durante las siguientes seis horas.
+[gold=ira | pred=tristeza] Me siento mal diciendo eso pero creo que el próximo sábado solo quiero estar sola.
+[gold=tristeza | pred=sorpresa] Todavía me siento un poco aturdido por la falta de sueño, así que intentaré reponerlo.
+[gold=tristeza | pred=ira] Siento un desagradable nudo en el estómago cuando se abren las puertas del ascensor en mi piso.
+[gold=miedo | pred=alegría] Me da un poco de miedo esto porque es nuevo para mí y tengo mucho que aprender, pero estoy seguro de que todo va a estar bien y podemos hacerlo juntos.
+[gold=amor | pred=alegría] He estado sintiendo por parte de mis admiradores que serían como ustedes, que son mis amigos aquí. Me sentí valiente y emocionado y me aventuré con la guitarra en la mano a una noche de micrófono abierto local.
+[gold=alegría | pred=amor] No sé de qué otra manera describirlo excepto decir que tuve el mismo sentimiento unas tres semanas antes de que falleciera mi querida abuela.
+[gold=alegría | pred=amor] Siento la necesidad de proxenetar esto ya que Raini, a mi querido director de casting de Rocky le encanta mucho.
+[gold=amor | pred=ira] siento que si me molestan dejo de preocuparme
+[gold=miedo | pred=tristeza] me siento incómodo aquí
+[gold=miedo | pred=tristeza] He informado que me siento marginado, intimidado o sometido a amenazas de represalias.
+[gold=tristeza | pred=alegría] Me siento muy emocionado por la llegada de tus hermanos.
+[gold=alegría | pred=amor] No diría que sufro de malestar social en este momento porque he encontrado lugares donde me siento cómodo e incluso personas que me han aceptado tal como soy.
+[gold=tristeza | pred=alegría] Lo soy ahora y todavía siento la dolorosa soledad de esa tranquila habitación del hospital.
+[gold=miedo | pred=ira] no me siento particularmente agitado
+[gold=alegría | pred=amor] Siento que debería apoyarlos de alguna manera, pero no estoy seguro de cómo.
+[gold=alegría | pred=amor] Podía sentir su aliento sobre mí y oler su dulce aroma.
+[gold=alegría | pred=tristeza] Siento que me entretuve SD todo el día.
+[gold=miedo | pred=sorpresa] Me desperté hoy sintiéndome un poco extraño
+[gold=miedo | pred=tristeza] Ambos comenzaron a sentirme incómodos y me levanté para irme, lo que fue recibido con comentarios de oh sí, claro, dos chicas como tú no vendrían a un bar si no estuvieras buscando la atención de los chicos.
+[gold=miedo | pred=tristeza] Me siento incómodo diciéndoles a los demás lo que hay en la lista de deseos de las chicas.
+[gold=ira | pred=amor] No siento amor hacia mí mismo y eso se convierte en una especie de círculo vicioso que hace que me sienta perezoso, complaciente y, en general, simplemente desmotivado.
+[gold=miedo | pred=sorpresa] todavía me siento un poco raro e inseguro
+[gold=tristeza | pred=miedo] Me siento bastante angustiado y apático.
+[gold=sorpresa | pred=miedo] Me siento conmocionado y triste por el hecho de que haya tanta gente enferma.
+[gold=miedo | pred=alegría] Empecé a sentirme un poco ansioso por el hecho de que mayo casi había terminado, ya que obviamente el tiempo se estaba acabando y, para ser honesto, ya no tengo excusas.
+[gold=alegría | pred=amor] Siempre dije que me sentía muy bendecida de tenerlo y hoy ese sentimiento se ha reafirmado muchas veces.
+[gold=tristeza | pred=miedo] Quiero decir, a veces me siento como un disco rayado.
+[gold=sorpresa | pred=tristeza] siento vergüenza de una manera extraña
+[gold=alegría | pred=amor] También siento que he aceptado mi lado oscuro y finalmente me estoy dando cuenta de que mi lado oscuro es saludable.
+[gold=miedo | pred=sorpresa] No puedo usar zapatos de tiras en el trabajo. Me siento raro, así que me los quité.
+[gold=alegría | pred=sorpresa] Me encantó la sensación que tuve durante una increíble carrera de slalom, ya fuera en un entrenamiento o en una carrera.
+[gold=ira | pred=tristeza] No mentiré, esta semana ha sido un poco difícil para mí. Me he sentido muy estresado y ansioso esta semana. Además, creo que estoy enfermando de gripe, pero definitivamente me ha ayudado a apreciar las pequeñas cosas.
+[gold=amor | pred=alegría] Siento que trabajando juntos y apoyándonos mutuamente puedo representar una voz más joven y más amplia en la política, ¿qué puedo decir al respecto?
+[gold=miedo | pred=sorpresa] Tengo muchas cosas que hacer en mi vida y me siento abrumado.
+[gold=amor | pred=alegría] Debo agregar que la multitud era similar a la de anoche, excepto que había una sensación de fumeta mucho más relajada con un elenco de apoyo de padres que escaparon de sus hijos.
+[gold=alegría | pred=miedo] Me siento tan nervioso por todo, tal vez simplemente deje mi postura virtuosa de liberación y me una a Georgie Porgie.
+[gold=tristeza | pred=miedo] Supongo que todos nos sentimos un poco inhibidos a la hora de coger el teléfono y llamar a alguien con quien ya no somos muy cercanos.
+[gold=tristeza | pred=amor] Me siento el menos amado y menos digno de ser amado.
+[gold=miedo | pred=sorpresa] Estaba estresada por mi búsqueda de trabajo y de apartamento y me sentía abrumada por todo lo que estaba pasando.
+[gold=tristeza | pred=amor] Siento que el sueño se me escapa de la cabeza. Me senté. Mi perro me empujó pidiendo afecto. Mi esposa también quería afecto.
+[gold=miedo | pred=ira] me sentía de mal humor inquieto
+[gold=miedo | pred=sorpresa] Entonces indiqué que me sentía bastante abrumado por las responsabilidades laborales de enseñar a viajar y escribir.
+[gold=ira | pred=tristeza] Siento que puedes dejar de ser tan desagradable y pensar por mí al menos.
+[gold=miedo | pred=tristeza] Yo también me siento un poco incómodo conmigo mismo.
+[gold=miedo | pred=ira] Sé a qué te refieres con sentirte agitado
+[gold=miedo | pred=sorpresa] Empecé a sentirme muy extraño
+[gold=ira | pred=alegría] vi las noticias en la tv
+[gold=ira | pred=alegría] Estaba practicando un deporte en una clase de educación física avanzada y muchas de las personas no eran avanzadas.
+[gold=alegría | pred=amor] Lo que siento por todos ustedes que me han estado apoyando es tan extremo que no habría manera de ponerle un valor numérico.
+[gold=miedo | pred=sorpresa] Me siento muy extraño pero este también es un movimiento presente y lo estoy intentando como una forma de hacerlo.
+[gold=alegría | pred=miedo] Realmente siento que logramos identificar algunas señales tempranas de advertencia bastante aterradoras y meter el pie en la puerta antes de que se cerrara.
+[gold=miedo | pred=tristeza] Honestamente, me da mucha vergüenza pedirles a mis amigos que me tomen fotos. ¿Qué tan vanidosos deben pensar que soy?
+[gold=alegría | pred=amor] Tengo el grave presentimiento de que no volverá hasta mañana y, curiosamente, lo he aceptado.
+[gold=tristeza | pred=amor] Me perdono por haber aceptado y me permito pensar que mientras escribo este blog alguien sentirá pena por mí, dame un poco de simpatía y dime que tengo razón.
+[gold=ira | pred=miedo] Me siento torturado, delilahlwl. Estoy considerando que tuve uno el otro día sobre uno de mis amigos más cercanos violando y matando polluelos.
+[gold=alegría | pred=amor] Tomo fotos, pero supongo que como siento que tengo menos talento en el área del retrato, admiro más esa habilidad en los demás.
+[gold=alegría | pred=miedo] No me gusta sentirme como un colegial ansioso esperando durante horas sólo para tocar el brillante aluminio.
+[gold=tristeza | pred=alegría] Estoy perdiendo, pero siento que tengo mucho que compartir con muchos y, en todo caso, eso no es desafortunado, en todo caso, me hace sentir agradecido.
+[gold=ira | pred=miedo] Siento que mi corazón está torturado por lo que he hecho
+[gold=ira | pred=tristeza] Vengo del verano y siento que el entrenador me odia.
+[gold=alegría | pred=tristeza] Me levanté el sábado por la mañana sintiéndome fatal pero decidido a no dejar que eso se apoderara de mí.
+[gold=amor | pred=tristeza] Me siento terriblemente arrepentido por no haber sido fiel a mis planes y no haberlo conseguido antes.
+[gold=tristeza | pred=amor] No puedo evitar pensar que si me hubiera callado, si no hubiera dado tanta importancia a lo que eran esencialmente dos adultos reunidos en la misma mesa para tomar una bebida caliente, entonces tal vez no habría pasado la mayor parte del fin de semana sintiéndome como una estúpid
+[gold=alegría | pred=sorpresa] He estado muy emocionado de que él lo sintiera y fue increíble.
+[gold=tristeza | pred=alegría] Siento la necesidad de aplicarme una capa de bronceado artificial para salir por la noche y darme un poco de color. Mi ropa lo hace por mí.
+[gold=alegría | pred=amor] También sé que no siento nada más que un cariño amistoso hacia ellos también.
+[gold=alegría | pred=tristeza] Me entristece mucho que el rey a quien una vez respeté bastante en lo que respecta a los monarcas fuera, en el mejor de los casos, ineficaz.
+[gold=tristeza | pred=sorpresa] Me siento aturdido y de mal humor por mi episodio, sin contar el hecho de que me asusté anoche.
+[gold=alegría | pred=amor] Nunca siento que no estoy apoyando
+[gold=alegría | pred=amor] Supongo que si uno se sintiera generoso, podría decir que el viaje en ascensor me estresó.
+[gold=alegría | pred=amor] Soy y siempre he sido una chica muy sincera, agradable, sociable, compasiva y servicial.
+[gold=miedo | pred=sorpresa] Tengo momentos en los que me siento tan abrumado que mis ojos se llenan de lágrimas.
+[gold=alegría | pred=amor] Creo que siempre han sido defensores de la idea y es ligeramente posible que sus sentimientos por una chica particularmente encantadora de Nueva Inglaterra lo hayan llevado a esa forma de pensar.
+[gold=tristeza | pred=alegría] Puedo elegir contar todo lo que siento ahora o simplemente fingir con algunas historias felices.
+[gold=miedo | pred=tristeza] Te animo a que la próxima vez que te sientas un poco incómodo hagas lo mejor que puedas para aceptarlo.
+[gold=ira | pred=tristeza] Me siento traicionado, enojado y triste al mismo tiempo, maldita sea.
+[gold=miedo | pred=sorpresa] Finalmente estoy empezando a sentir que tengo una vida real aquí en San Vicente y que ya no estoy en unas extrañas y confusas vacaciones prolongadas.
+[gold=alegría | pred=amor] No podría sentirme más bendecido en este momento.
+[gold=alegría | pred=amor] Tengo una familia que me apasiona y con la que puedo sentirme completamente cómodo.
+[gold=alegría | pred=amor] Crecí con este sentimiento viviendo a solo unos minutos del hermoso océano Atlántico en Brasil, así que probablemente no sea una sorpresa que me haya encariñado con el océano.
+[gold=tristeza | pred=miedo] Siento que dentro de esta vida es como un juego a veces, luego viniste a mi alrededor, las paredes simplemente desaparecieron, nada que me rodeara, mantenme alejado de mis miedos, estoy desprotegido, mira cómo me he abierto, me has hecho confiar porque nunca me había sentido así 
+[gold=miedo | pred=ira] He empezado a sentir que no vale la pena agitarse por casi nada.
+[gold=alegría | pred=amor] Me siento generoso, así que ahí tienes esa pepita de oro.
+[gold=tristeza | pred=alegría] Siento que solo puedo esperar no estar solo con estos pensamientos y estoy seguro de que todos ustedes, compañeros estudiantes de intercambio, probablemente tengan los mismos pensamientos en mente con al menos algo de esto enumerado. Algunos podrían decir que ser un estudiante de
+[gold=ira | pred=miedo] Sé lo que se siente al ser torturado.
+[gold=alegría | pred=amor] Sentí que había desarrollado sentimientos por este tipo, lo que explica por qué incluso seguía a este tipo como un cachorro fiel y él nunca lo supo.
+[gold=miedo | pred=alegría] dije algo familiar como me encantaría estar presente contigo ahora y me siento demasiado ansioso por el tiempo
+[gold=ira | pred=tristeza] He estado sentado en casa revisando hoy y en general me siento bastante estresado.
+[gold=sorpresa | pred=tristeza] Ni siquiera puedo empezar a expresar con palabras la profundidad del dolor que siento por no haber publicado ninguna de mis ridículas peroratas durante los últimos días.
+[gold=amor | pred=ira] Siento que el escritor quiere que piense eso y proclamar que ya no le gustan los púlsares es un personaje mezquino y hilarante.
+[gold=alegría | pred=amor] No sé ustedes pero me siento muy bendecido
+[gold=alegría | pred=sorpresa] Estaba ganando peso, me hacía mucho más fuerte y me sentía increíble.
+[gold=tristeza | pred=alegría] cuando escuché el último reglamento del gobierno socialista sobre pensiones
+[gold=tristeza | pred=ira] Tengo miedo de llamar al chico de ayer porque creo que se enojará porque creo que mi jefe está enojado porque no me comunico con él y siento que estoy haciendo un trabajo de mierda y proyecto mis miedos en él.
+[gold=ira | pred=tristeza] Siento que si odiara completamente las cosas, ejercería mi derecho democrático, diría lo que pienso de todas las formas posibles y trataría de lograr un cambio.
+[gold=miedo | pred=tristeza] Me siento incómodo porque tengo una caja torácica más pequeña y un pecho más grande, o me estoy derramando sobre la parte superior del tanque o la banda elástica está demasiado apretada o demasiado suelta.
+[gold=tristeza | pred=alegría] Empecé a leer City of Dark Magic. Pensé que sería un desafío disfrutarlo realmente, ya que sentía que el contenido sobre la música clásica famosa se me pasaba por la cabeza, pero afortunadamente, después de leer el primer capítulo, me volví más seguro y comencé a sentirme menos t
+[gold=alegría | pred=amor] Creo firmemente que la única manera de realizar este oficio es escribir el libro que te apasione y no preocuparte por encontrar el libro que la audiencia masiva desea.
+[gold=alegría | pred=amor] Me siento aceptada y amada por una comunidad de chicas del derbi que ayudé a crear.
+[gold=ira | pred=tristeza] Me siento mal esta noche
+[gold=miedo | pred=sorpresa] Seguí mi guión de ¿te gustaría mostaza o salsa con eso? y comencé a sentirme realmente sorprendido.
+[gold=ira | pred=amor] No tengo sentimientos fuertes por este libro, ni lo odié ni lo amé.
+[gold=amor | pred=tristeza] No puedo evitar sentir mucha nostalgia por los niveles de Disney.
+[gold=ira | pred=tristeza] Necesito un descanso o me siento estresado
+[gold=tristeza | pred=ira] No quiero juzgar siempre a hombres o escenarios particulares que veo a menudo en esta área, pero con tanta trata, trabajo sexual forzado y lo que básicamente equivale a esclavitud, es difícil no sentirme un poco amargado y desilusionado.
+[gold=miedo | pred=tristeza] Siento que tengo que evitar desencadenar algún estereotipo de una persona que grita y rompe cosas porque no pudo comer su tipo de sándwich favorito.
+[gold=tristeza | pred=alegría] Tengo grandes amigos y grandes compañeros de casa que han escuchado cómo me siento y me han recordado que no es importante y que debo disfrutar de mi vida y estar orgulloso de mí mismo.
+[gold=ira | pred=amor] Siento que debería estar escuchando Chinesepod y trabajando en mi mandarín, pero lo que realmente quiero escuchar es el podcast Savage Love o Car Talk.
+[gold=alegría | pred=amor] me siento subestimado y subvalorado
+[gold=sorpresa | pred=ira] Siento impaciencia por el ritmo de la pérdida e impresionado al mismo tiempo.
+[gold=ira | pred=miedo] cuando reorganizamos los muebles de nuestro apartamento y nos quedamos atrapados en una silla
+[gold=miedo | pred=amor] Se suponía que debía sentir simpatía por Emma. Me temo que fallé.
+[gold=miedo | pred=tristeza] Te veo en el montículo de lanzadores en nuestro diamante de ligas menores. Me siento muy ansioso por ti porque parece muy aislado allí.
+[gold=alegría | pred=amor] Me di cuenta de lo que me apasiona: ayudar a las mujeres a sentirse aceptadas y apreciadas.
+[gold=alegría | pred=amor] Me siento muy bendecida de tener amigos a los que puedo acudir.
+[gold=alegría | pred=amor] Me gustaron los terrenos allí y tengo ganas de volver allí.
+[gold=tristeza | pred=amor] Actué retraído y frío hacia los demás en situaciones que requerían empatía no es que no me importe, simplemente no siempre siento esos sentimientos, así que finjo
+[gold=ira | pred=tristeza] Me siento encerrado, impaciente y aburrido.
+[gold=alegría | pred=amor] no sentí ninguna alegría apasionada
+[gold=tristeza | pred=amor] Me sorprende cuántos hombres dicen que no se sienten amados si la casa está desordenada y tienen que preparar su propia cena.
+[gold=alegría | pred=amor] Explico por qué me aferré a una relación con un chico que en muchos sentidos era inmaduro y poco comprometido a pesar del entusiasmo que debería haber sentido por ser aceptado en el programa de maestría de la Universidad de Virginia.
+[gold=miedo | pred=tristeza] Supongo que los sentimientos no deben inhibirse ni prohibirse.
+[gold=miedo | pred=sorpresa] Lloré mientras Jackson dormía sintiéndome abrumado por la sensación de que no quiero morir.
+[gold=tristeza | pred=amor] No estoy seguro de que el sentimiento de pérdida desaparezca alguna vez, pero puede que se convierta en un dulce sentimiento de nostalgia por lo que compartí en esta vida con mi padre y la suerte que tuve de tener un padre durante años.
+[gold=tristeza | pred=alegría] Sentí un deseo más fuerte de liberarme de la autoestima a través de mi práctica de refugio y un retorno al sentimiento de libertad y protección contra el sufrimiento que permanecí durante el resto de la meditación.
+[gold=amor | pred=alegría] Me siento afirmado, gracioso, sensual y tendré menos dudas cuando sea una generación href http.
+[gold=tristeza | pred=miedo] Me siento desprotegido un enlace de recuento de publicaciones de clase href http reprogramación en proceso
+[gold=alegría | pred=amor] Espero que hoy se sienta generosa y me invite a comer comida japonesa o algo así jaja que tengas un gran día.
+[gold=tristeza | pred=alegría] Quiero que salgas de esto y simplemente sientas, simplemente, vives, ríes, disfrutas de esta vida, no importa lo idiota que sea.
+[gold=miedo | pred=tristeza] Ahora me siento tan incómodo como si estuviera cargando un Volvo, pero mi barriga es agradable y ordenada y no se parece a la tripa cervecera que mi papá tiene, bonita, dura y redonda, y me contoneo como él.
+[gold=amor | pred=tristeza] No siento vergüenza alguna por añorar a Iron Man en mi cineworld local.
+[gold=alegría | pred=sorpresa] Me siento tan increíble musicjuzz
+[gold=tristeza | pred=amor] No he sentido nostalgia porque saber que todos se reunirían para disfrutar de la cocina de mi madre me hizo querer un teletransportador.
+[gold=alegría | pred=sorpresa] No siempre siento que tengo un estilo increíble y la mayoría de los días elijo la comodidad por encima de cualquier otra cosa, pero hay una cosa que siento que marca la diferencia en cómo me siento conmigo misma y es el maquillaje.
+[gold=tristeza | pred=alegría] Siento que esos deberes no son importantes para nuestra profesión, simplemente no estoy calificado para discutirlos todos.
+[gold=miedo | pred=ira] Me siento agitado conmigo mismo porque no preví sus frustraciones antes que llevaron al final de nuestra relación.
+[gold=miedo | pred=sorpresa] Me convierto en otra persona y hago chistes incómodos al azar. Honestamente, este sentimiento es tan extraño. ¿Es esto lo que se siente estar en la cima de una nube?
+[gold=alegría | pred=amor] Realmente no conozco muy bien al mayor y su madre maternal parece sentir que no es dulce.
+[gold=alegría | pred=amor] Siento que estoy en el paraíso. Besar esos dulces labios me hace sentir como si me sumergiera en un mundo mágico de amor.
+[gold=alegría | pred=amor] Te reviso cuando duermes, te toco la nariz y los dedos de los pies para asegurarme de que no tengas demasiado calor ni demasiado frío.
+[gold=ira | pred=amor] leo su blog es que siento que ella es una persona a la que no le importa cómo la mira la gente y cree en ser ella misma sin importar cuán molesto o egocéntrico pueda parecerle a la gente.
+[gold=sorpresa | pred=miedo] Quiero decir, la idea es embriagadora, por supuesto, y se siente increíble cuando sucede, pero ¿qué sucede en la mañana cuando te despiertas y tienes que ir a trabajar y entonces está todo en tu mierda por algo que es completamente impráctico?
+[gold=alegría | pred=amor] Me siento muy bendecida de estar casada con él porque ama a sus hijastros.
+[gold=miedo | pred=tristeza] Me obligué a seguir regresando a pesar de que me hacían sentir constantemente incómodo, pero después de un tiempo simplemente me di por vencido porque no veía ningún sentido.
+[gold=ira | pred=tristeza] No quería pasar mis días trabajando en un trabajo que no disfrutaba ni volver a casa sintiéndome estresada y cansada y no poder darle a mi hija la atención que merecía.
+[gold=miedo | pred=tristeza] Nunca me da vergüenza llamarla o enviarle mil millones de mensajes de texto y no la molestaré.
+[gold=ira | pred=tristeza] Me siento atacado o insultado. Es útil darme cuenta de que la idea de ataque está viva y coleando en mi propia mente.
+[gold=ira | pred=amor] Siento que mi piel mixta sensible e irritable finalmente ha encontrado su pareja
+[gold=amor | pred=tristeza] Solo quiero esa sensación de no preocuparme por cosas innecesarias como me sentía antes
