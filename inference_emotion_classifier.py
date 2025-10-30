@@ -96,5 +96,5 @@ def predict(text: str, return_probs: bool = False) -> Any:
 
 if __name__ == "__main__":
     # Pruebas rápidas
-    print(predict("Estoy muy contento con los resultados"))
+    print(predict("Estoy muy contento con los resultados", return_probs=True))
     print(predict("Tengo miedo de lo que pueda pasar", return_probs=True))
