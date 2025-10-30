@@ -83,7 +83,11 @@ class AgentEmotionTrainer:
         labels_tensor = torch.tensor(train_loader.dataset.agent_labels)
         num_classes = 6
         class_counts = torch.bincount(labels_tensor, minlength=num_classes).float()
-        class_weights = (class_counts.sum() / (len(class_counts) * class_counts)).to(self.device)
+        # ⚠️ Puede que solo haya clases {1,2} en label_agent → evita división por cero
+        safe_counts = torch.clamp(class_counts, min=1.0)
+        inv_freq = (safe_counts.sum() / (num_classes * safe_counts)).to(self.device)
+        # Normaliza para estabilidad (media≈1)
+        class_weights = inv_freq / inv_freq.mean()
         self.criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.1)
 
         # ---------- Optimizador AdamW con 2 grupos (encoder vs head) ----------
