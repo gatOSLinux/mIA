@@ -149,10 +149,11 @@ class AgentEmotionPredictClassifier(nn.Module):
             self.embedder = TextEmbedder(model_name=model_name, emb_dim=emb_dim, max_length=max_length, device=self.device)
             embed_dim = emb_dim
 
-        self.label_dim = num_classes  # one-hot(6)
+        self.label_dim = 6  # one-hot(6)
         self.feat_drop = FeatureDropout(p=label_feature_dropout)
-        self.classifier = MLP(input_dim=embed_dim + self.label_dim, hidden1=hidden1, hidden2=hidden2,
-                              num_classes=num_classes, dropout=dropout)
+        elf.classifier = MLP(input_dim=embed_dim + self.label_dim,
+                      hidden1=hidden1, hidden2=hidden2,
+                      num_classes=num_classes, dropout=dropout)  # num_classes = salida del AGENTE (ahora 2)
         self.to(self.device)
 
     # ---------- Utils ----------

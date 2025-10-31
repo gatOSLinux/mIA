@@ -381,6 +381,7 @@ def main():
     label_names_full = {0:"tristeza",1:"alegría",2:"amor",3:"ira",4:"miedo",5:"sorpresa"}
     class_names = [label_names_full[c] for c in present_classes]
     K = len(present_classes)
+    print(f"Clases existentes - valor K : {K}")
     label_map = {orig:i for i, orig in enumerate(present_classes)}
     print(f"Clases de agente en train: {present_classes} → K={K} ({class_names})")
 
