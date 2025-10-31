@@ -28,7 +28,7 @@ from agent_emotion_predict_classifier import AgentEmotionPredictClassifier
 
 # ==================== DATASET ====================
 class AgentEmotionDataset(Dataset):
-    def __init__(self, data_path: str):
+    def __init__(self, data_path: str, label_map: Optional[dict] = None):
         with open(data_path, 'r', encoding='utf-8') as f:
             raw = json.load(f)
         data = raw.get('data', raw)
@@ -37,10 +37,13 @@ class AgentEmotionDataset(Dataset):
         self.agent_labels: List[int] = []
         for it in data:
             self.texts.append(it['text'])
-            # pueden venir como str
             u = it['label']; a = it['label_agent']
-            self.user_labels.append(int(u) if isinstance(u, str) else u)
-            self.agent_labels.append(int(a) if isinstance(a, str) else a)
+            u = int(u) if isinstance(u, str) else u
+            a = int(a) if isinstance(a, str) else a
+            if label_map is not None:
+                a = label_map[a]  # remapea a {0..K-1}
+            self.user_labels.append(u)
+            self.agent_labels.append(a)
 
     def __len__(self):
         return len(self.texts)
@@ -48,12 +51,11 @@ class AgentEmotionDataset(Dataset):
     def __getitem__(self, idx):
         return self.texts[idx], self.user_labels[idx], self.agent_labels[idx]
 
-
 def collate_fn(batch):
     texts, ulabels, alabels = zip(*batch)
     ulabels = torch.tensor(ulabels, dtype=torch.long)
     alabels = torch.tensor(alabels, dtype=torch.long)
-    return list(texts), ulabels, alabels
+    return list(texts), ulabels, alabels(batch)
 
 
 # ==================== TRAINER ====================
@@ -72,23 +74,24 @@ class AgentEmotionTrainer:
         warmup_ratio: float = 0.1,
         early_stopping_patience: int = 3,
         warmup_freeze_epochs: int = 2,
+        num_classes: int = 2,
+        class_names: Optional[List[str]] = None,
     ):
         self.model = model
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.test_loader = test_loader
         self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.num_classes = num_classes
+        self.class_names = class_names or ["alegría","amor"]
 
         # ---------- Pérdida con pesos de clase + label smoothing ----------
         labels_tensor = torch.tensor(train_loader.dataset.agent_labels)
-        num_classes = 6
-        class_counts = torch.bincount(labels_tensor, minlength=num_classes).float()
-        # ⚠️ Puede que solo haya clases {1,2} en label_agent → evita división por cero
-        safe_counts = torch.clamp(class_counts, min=1.0)
-        inv_freq = (safe_counts.sum() / (num_classes * safe_counts)).to(self.device)
-        # Normaliza para estabilidad (media≈1)
+        class_counts = torch.bincount(labels_tensor, minlength=self.num_classes).float()
+        safe_counts = class_counts.clamp(min=1.0)
+        inv_freq = (safe_counts.sum() / (self.num_classes * safe_counts)).to(self.device)
         class_weights = inv_freq / inv_freq.mean()
-        self.criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.1)
+        self.criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.05)
 
         # ---------- Optimizador AdamW con 2 grupos (encoder vs head) ----------
         self.lr_encoder = lr_encoder
@@ -197,8 +200,8 @@ class AgentEmotionTrainer:
                 all_texts.extend(texts)
 
         accuracy = 100 * np.mean(np.array(all_predictions) == np.array(all_labels))
-        labels_ord = list(range(6))
-        target_names = ["tristeza","alegría","amor","ira","miedo","sorpresa"]
+        labels_ord = list(range(self.num_classes))
+        target_names = self.class_names
 
         report = classification_report(
             all_labels,
@@ -306,10 +309,10 @@ class AgentEmotionTrainer:
         print(f"✓ Gráfica de entrenamiento guardada en: {save_dir}/training_history.png")
 
     def plot_confusion_matrix(self, cm: np.ndarray, save_dir: str, norm: bool = False):
-        plt.figure(figsize=(10, 8))
+        plt.figure(figsize=(8, 6))
         fmt = '.2f' if norm else 'd'
         cmap = 'Blues'
-        ticklabels = ["tristeza","alegría","amor","ira","miedo","sorpresa"]
+        ticklabels = self.class_names
         sns.heatmap(cm, annot=True, fmt=fmt, cmap=cmap, xticklabels=ticklabels, yticklabels=ticklabels,
                     vmin=0, vmax=1 if norm else None)
         plt.title('Matriz de Confusión ' + ('(Normalizada)' if norm else '(Absoluta)'))
@@ -365,24 +368,33 @@ def main():
     print("="*60)
     print("CONFIGURACIÓN DEL ENTRENAMIENTO (AgentEmotion v2)")
     print("="*60)
-    print(f"Train: {TRAIN_PATH}\nVal:   {VAL_PATH}\nTest:  {TEST_PATH}")
+    print(f"Train: {TRAIN_PATH}")
+    print(f"Val:   {VAL_PATH}")
+    print(f"Test:  {TEST_PATH}")
     print(f"Batch size: {BATCH_SIZE} | Épocas: {NUM_EPOCHS}")
     print(f"Freeze warmup epochs: {WARMUP_FREEZE_EPOCHS}")
     print(f"LR encoder: {LR_ENCODER} | LR head: {LR_HEAD}")
 
-    # Cargar datasets
-    print("\nCargando datasets v2 (con label_agent)...")
-    train_ds = AgentEmotionDataset(TRAIN_PATH)
-    val_ds   = AgentEmotionDataset(VAL_PATH)
-    test_ds  = AgentEmotionDataset(TEST_PATH)
-    print(f"Train samples: {len(train_ds)} | Val: {len(val_ds)} | Test: {len(test_ds)}")
+    # 1) Detectar clases presentes en TRAIN y remapear a {0..K-1}
+    probe = AgentEmotionDataset(TRAIN_PATH)
+    present_classes = sorted(set(probe.agent_labels))  # p.ej., [1,2]
+    label_names_full = {0:"tristeza",1:"alegría",2:"amor",3:"ira",4:"miedo",5:"sorpresa"}
+    class_names = [label_names_full[c] for c in present_classes]
+    K = len(present_classes)
+    label_map = {orig:i for i, orig in enumerate(present_classes)}
+    print(f"Clases de agente en train: {present_classes} → K={K} ({class_names})")
 
-    # DataLoaders
-    train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_fn)
-    val_loader   = DataLoader(val_ds, batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
-    test_loader  = DataLoader(test_ds, batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
+    # 2) Recrear datasets aplicando el mapeo
+    train_ds = AgentEmotionDataset(TRAIN_PATH, label_map=label_map)
+    val_ds   = AgentEmotionDataset(VAL_PATH,   label_map=label_map)
+    test_ds  = AgentEmotionDataset(TEST_PATH,  label_map=label_map)
 
-    # Modelo (BETO + MLP, encoder congelado inicialmente)
+    # 3) DataLoaders
+    train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True,  collate_fn=collate_fn)
+    val_loader   = DataLoader(val_ds,   batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
+    test_loader  = DataLoader(test_ds,  batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
+
+    # 4) Modelo (salida con K clases)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = AgentEmotionPredictClassifier(
         pretrained_encoder="beto",
@@ -392,10 +404,11 @@ def main():
         dropout=0.2,
         label_feature_dropout=0.15,
         device=device,
+        num_classes=K,
     )
     model.freeze_encoder()
-    print(f"Modelo en: {device}")
 
+    # 5) Trainer con num_classes y nombres
     trainer = AgentEmotionTrainer(
         model=model,
         train_loader=train_loader,
@@ -409,9 +422,11 @@ def main():
         warmup_ratio=WARMUP_RATIO,
         early_stopping_patience=EARLY_STOPPING_PATIENCE,
         warmup_freeze_epochs=WARMUP_FREEZE_EPOCHS,
+        num_classes=K,
+        class_names=class_names,
     )
 
-    # Entrenar y evaluar
+    # 6) Entrenar y evaluar
     trainer.train(
         num_epochs=NUM_EPOCHS,
         early_stopping_patience=EARLY_STOPPING_PATIENCE,
