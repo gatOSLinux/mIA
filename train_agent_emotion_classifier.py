@@ -55,7 +55,7 @@ def collate_fn(batch):
     texts, ulabels, alabels = zip(*batch)
     ulabels = torch.tensor(ulabels, dtype=torch.long)
     alabels = torch.tensor(alabels, dtype=torch.long)
-    return list(texts), ulabels, alabels(batch)
+    return list(texts), ulabels, alabels
 
 
 # ==================== TRAINER ====================
