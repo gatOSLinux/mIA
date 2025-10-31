@@ -50,12 +50,12 @@ class AgentEmotionDataset(Dataset):
 
     def __getitem__(self, idx):
         return self.texts[idx], self.user_labels[idx], self.agent_labels[idx]
-
-def collate_fn(batch):
-    texts, ulabels, alabels = zip(*batch)
-    ulabels = torch.tensor(ulabels, dtype=torch.long)
-    alabels = torch.tensor(alabels, dtype=torch.long)
-    return list(texts), ulabels, alabels(batch)
+        
+    def collate_fn(batch):
+        texts, ulabels, alabels = zip(*batch)
+        ulabels = torch.tensor(ulabels, dtype=torch.long)
+        alabels = torch.tensor(alabels, dtype=torch.long)
+        return list(texts), ulabels, alabels(batch)
 
 
 # ==================== TRAINER ====================
