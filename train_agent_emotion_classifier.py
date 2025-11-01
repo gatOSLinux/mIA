@@ -392,8 +392,8 @@ def main():
 
     # 3) DataLoaders
     train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True,  collate_fn=collate_fn)
-    val_loader   = DataLoader(val_ds,   batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
-    test_loader  = DataLoader(test_ds,  batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
+    val_loader   = DataLoader(val_ds,   batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_fn)
+    test_loader  = DataLoader(test_ds,  batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_fn)
 
     # 4) Modelo (salida con K clases)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
