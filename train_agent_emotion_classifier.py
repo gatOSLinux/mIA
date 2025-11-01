@@ -254,7 +254,7 @@ class AgentEmotionTrainer:
             print(f"Train: loss={tr_loss:.4f} acc={tr_acc:.2f}% | Val: loss={va_loss:.4f} acc={va_acc:.2f}% f1m={va_f1:.4f}")
 
             # Guardar mejor por Macro-F1
-            if va_f1 > best_f1:
+            if va_f1 > best_f1 and best_f1 < 0.9999:
                 best_f1 = va_f1
                 patience_counter = 0
                 Path(save_dir).mkdir(parents=True, exist_ok=True)
@@ -359,7 +359,7 @@ def main():
     BATCH_SIZE = 16
     NUM_EPOCHS = 20
     EARLY_STOPPING_PATIENCE = 2
-    WARMUP_FREEZE_EPOCHS = 5
+    WARMUP_FREEZE_EPOCHS = 2 #antes 5
     LR_ENCODER = 1e-5
     LR_HEAD = 5e-4
     WEIGHT_DECAY = 0.05
