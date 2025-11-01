@@ -356,14 +356,15 @@ def main():
     SAVE_DIR   = "models/agent_emotion"
 
     # Hiperparámetros
-    BATCH_SIZE = 32
+    BATCH_SIZE = 16
     NUM_EPOCHS = 20
-    EARLY_STOPPING_PATIENCE = 3
-    WARMUP_FREEZE_EPOCHS = 2
-    LR_ENCODER = 2e-5
-    LR_HEAD = 1e-3
-    WEIGHT_DECAY = 0.01
+    EARLY_STOPPING_PATIENCE = 2
+    WARMUP_FREEZE_EPOCHS = 5
+    LR_ENCODER = 1e-5
+    LR_HEAD = 5e-4
+    WEIGHT_DECAY = 0.05
     WARMUP_RATIO = 0.1
+
 
     print("="*60)
     print("CONFIGURACIÓN DEL ENTRENAMIENTO (AgentEmotion v2)")
@@ -402,8 +403,8 @@ def main():
         max_length=128,
         hidden1=256,
         hidden2=64,
-        dropout=0.2,
-        label_feature_dropout=0.15,
+        dropout=0.4,               # antes 0.2
+        label_feature_dropout=0.5, # antes 0.15
         device=device,
         num_classes=K,
     )
