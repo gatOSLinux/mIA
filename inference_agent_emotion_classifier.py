@@ -78,7 +78,7 @@ def _resolve_paths() -> Tuple[str, str]:
         )
 
     print("⬇️  Descargando archivos desde Hugging Face Hub...")
-    ckpt_path = hf_hub_download(repo_id=REPO_ID, filename="best_model.pt")
+    ckpt_path = hf_hub_download(repo_id=REPO_ID, filename="best_model_agent.pt")
     cfg_path  = hf_hub_download(repo_id=REPO_ID, filename="config_agent.json")
     return ckpt_path, cfg_path
 
