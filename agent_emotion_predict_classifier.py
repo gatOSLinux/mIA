@@ -19,70 +19,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from emotion_classifier_model import TextEmbedder, BETOEmbedder  # reemplaza con tu import real
-# Reutiliza tus embedders existentes: pega aquí las clases TextEmbedder y BETOEmbedder
-# o impórtalas desde tu módulo actual si están en otro archivo.
-"""
-try:
-    from emotion_classifier_model import TextEmbedder, BETOEmbedder  # reemplaza con tu import real
-except Exception:
-    # Versiones mínimas (idénticas a tu implementación) para que el archivo sea autocontenido si hace falta.
-    from transformers import AutoTokenizer, AutoModel
 
-    class TextEmbedder(nn.Module):
-        def __init__(self, model_name: str = "dccuchile/bert-base-spanish-wwm-cased", emb_dim: int = 300,
-                     max_length: int = 128, device: Optional[torch.device] = None):
-            super().__init__()
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
-            self.vocab_size = self.tokenizer.vocab_size
-            self.pad_id = self.tokenizer.pad_token_id
-            self.cls_id = self.tokenizer.cls_token_id
-            self.sep_id = self.tokenizer.sep_token_id
-            self.max_length = max_length
-            self.embedding = nn.Embedding(self.vocab_size, emb_dim, padding_idx=self.pad_id)
-            nn.init.xavier_uniform_(self.embedding.weight)
-            with torch.no_grad():
-                if self.pad_id is not None:
-                    self.embedding.weight[self.pad_id].zero_()
-            self.emb_dropout = nn.Dropout(p=0.1)
-            self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            self.to(self.device)
-
-        def embed_batch(self, texts: List[str]) -> torch.Tensor:
-            batch = self.tokenizer(texts, padding=True, truncation=True, max_length=self.max_length, return_tensors="pt")
-            input_ids = batch["input_ids"].to(self.device)
-            attention_mask = batch["attention_mask"].to(self.device)
-            embeds = self.embedding(input_ids)
-            if self.training:
-                embeds = self.emb_dropout(embeds)
-            mask = attention_mask.bool()
-            if self.cls_id is not None:
-                mask = mask & (input_ids != self.cls_id)
-            if self.sep_id is not None:
-                mask = mask & (input_ids != self.sep_id)
-            mask_f = mask.unsqueeze(-1).float()
-            summed = (embeds * mask_f).sum(dim=1)
-            counts = mask_f.sum(dim=1).clamp(min=1.0)
-            sentence_vecs = summed / counts
-            return sentence_vecs
-
-    class BETOEmbedder(nn.Module):
-        def __init__(self, model_name: str = "dccuchile/bert-base-spanish-wwm-cased", max_length: int = 128,
-                     device: Optional[torch.device] = None):
-            super().__init__()
-            self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
-            self.encoder = AutoModel.from_pretrained(model_name)
-            self.max_length = max_length
-            self.encoder.to(self.device)
-
-        def embed_batch(self, texts: List[str]) -> torch.Tensor:
-            inputs = self.tokenizer(texts, padding=True, truncation=True, max_length=self.max_length, return_tensors="pt").to(self.device)
-            outputs = self.encoder(**inputs)
-            last_hidden = outputs.last_hidden_state  # [B, T, 768]
-            mask = inputs["attention_mask"].unsqueeze(-1).float()
-            pooled = (last_hidden * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
-            return pooled
-"""
 
 class FeatureDropout(nn.Module):
     """Apaga aleatoriamente (con prob p) TODA la rama de la one-hot del label en entrenamiento.
@@ -191,24 +128,4 @@ class AgentEmotionPredictClassifier(nn.Module):
         return preds, probs
 
 
-# ---- Ejemplo mínimo de uso (comentado) ----
-"""
-from torch.utils.data import DataLoader
 
-model = AgentEmotionPredictClassifier(pretrained_encoder="beto")
-model.freeze_encoder()  # recomendado para esta segunda red
-
-optimizer = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=2e-4)
-criterion = nn.CrossEntropyLoss()
-
-# Supón que tienes un batch:
-texts = ["Estoy muy feliz por el resultado!", "Me siento triste y perdido"]
-user_labels = torch.tensor([1, 0])         # emoción del usuario (texto)
-label_agent_targets = torch.tensor([1, 2]) # objetivo del agente
-
-model.train()
-logits = model(texts, user_labels)
-loss = criterion(logits, label_agent_targets)
-loss.backward()
-optimizer.step()
-"""

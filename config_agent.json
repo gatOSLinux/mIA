@@ -1,0 +1,26 @@
+{
+  "model_type": "AgentEmotionPredictClassifier",
+  "base_model_id": "dccuchile/bert-base-spanish-wwm-cased",
+  "pretrained_encoder": "beto",
+  "max_length": 128,
+
+  "hidden1": 256,
+  "hidden2": 64,
+  "dropout": 0.4,
+  "label_feature_dropout": 0.5,
+
+  "num_classes": 2,
+  "present_classes": [1, 2],
+  "class_names": ["alegría", "amor"],
+
+  "label_space_global": {
+    "0": "tristeza",
+    "1": "alegría",
+    "2": "amor",
+    "3": "ira",
+    "4": "miedo",
+    "5": "sorpresa"
+  },
+
+  "notes": "Head binaria entrenada solo con clases 1(alegría) y 2(amor); mapping preservado en present_classes/class_names."
+}
