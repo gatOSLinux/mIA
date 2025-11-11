@@ -1,6 +1,7 @@
 import voice_recorder 
 import speech_to_text
 import inference_emotion_classifier 
+import inference_agent_emotion_classifier
 import json
 #Pipeline
 #Flujo PEAS
@@ -20,6 +21,8 @@ def main():
     print("Utilizando la primera red neuronal - Analisis de Sentimiento del Usuario")
     user_emotion = inference_emotion_classifier.predict(text)
     print("Emocion del usuario (VARIABLE):", user_emotion)
+    user_agent = inference_agent_emotion_classifier.predict(text,user_emotion)
+    print("Emocion del agente (VARIABLE):", user_agent)
     print("Finalizo el programa...")
 
 
